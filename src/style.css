@@ -1,1 +1,31 @@
 @import "tailwindcss";
+
+/* latin-ext */
+@font-face {
+  font-family: 'BitcountGridDouble';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url(https://fonts.gstatic.com/s/bitcountgriddouble/v3/WBKmrFjbakJVFOargiWSKQysDITG_S0VtG0x3HD2FYHVdlZI-rLlahmEAPp8wjYMvkPq48MVQo5RQf2svjnxa5Anx8-Y-pHdkVb0ByRtaTQqpztoBeEeXPU.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'BitcountGridDouble';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url(https://fonts.gstatic.com/s/bitcountgriddouble/v3/WBKmrFjbakJVFOargiWSKQysDITG_S0VtG0x3HD2FYHVdlZI-rLlahmEAPp8wjYMvkPq48MVQo5RQf2svjnxa5Anx8-Y-pHdkVb0ByRtZzQqpztoBeEe.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+      @keyframes spew {
+        0% { transform: translate(0,0) scale(0.2); opacity: 1; }
+        70% { transform: translate(var(--tx), var(--ty)) scale(1.05); opacity: 1; }
+        100% { transform: translate(calc(var(--tx)*1.08), calc(var(--ty)*1.08)) scale(0.8); opacity: 0; }
+      }
+      .gem {
+        @apply absolute w-6 h-6 opacity-0 pointer-events-none;
+        transform: scale(0);
+      }
+      .btn:hover .gem {
+        animation: spew 900ms cubic-bezier(.16,.9,.31,1) forwards;
+      }
