@@ -1,25 +1,25 @@
 <!doctype html>
-<html class="w-screen h-screen">
+<html class="min-h-screen w-full">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/src/style.css" rel="stylesheet">
 </head>
-<body class="w-full h-full text-[#f7f8fa]">
-  <div id="app" class="w-full h-full">
-    <div class="h-[7%] w-full bg-[#1d2225] flex items-center justify-between">
-      <p class="text-3xl ml-4 font-[BitcountGridDouble]">
+<body class="min-h-screen w-full text-[#f7f8fa]">
+  <div id="app" class="flex flex-col min-h-screen w-full">
+  <div class="min-h-[60px] w-full bg-[#1d2225] flex items-center justify-between px-2 py-2">
+  <p class="text-2xl md:text-3xl ml-2 md:ml-4 font-[BitcountGridDouble]">
         CR8OPNR
       </p>
-      <img class="w-14 h-14" src="/assets/svg/house.svg" alt="house image">
-      <div class="flex mr-4 justify-center items-center text-2xl">
+  <img class="w-10 h-10 md:w-14 md:h-14" src="/assets/svg/house.svg" alt="house image">
+  <div class="flex mr-2 md:mr-4 justify-center items-center text-lg md:text-2xl">
         <div class="flex">
           <div class="flex bg-[#303030] rounded-2xl px-2 py-1 mr-2">
-            <img class="w-8 h-8 mb-0.5" src="/assets/svg/gem.png" alt=""> 
+            <img class="w-6 h-6 md:w-8 md:h-8 mb-0.5" src="/assets/svg/gem.png" alt=""> 
             <p id="gem-balance" class="ml-4">500</p>
           </div>
         </div>
-        <img id="profile-container" class="ml-4 rounded-full w-12 h-12 cursor-pointer" src="/assets/svg/default.png" alt="profile image">
+  <img id="profile-container" class="ml-2 md:ml-4 rounded-full w-10 h-10 md:w-12 md:h-12 cursor-pointer" src="/assets/svg/default.png" alt="profile image">
         <div id="profile-dropdown" class="hidden absolute right-0 top-[65px] bg-gray-600 rounded-xl px-2 py-1 select-none">
           <p>
             Not logged in
@@ -36,22 +36,20 @@
         </div>
       </div>
     </div>
-    <div class="flex w-full h-[31%] bg-[#171719] justify-between pt-10">
-      <div class="w-[15%] h-[80%] bg-[#303030] rounded-2xl ">
-        <img class="w-full h-full" src="/assets/svg/mines.png" alt="">
+  <div class="flex flex-wrap w-full min-h-[200px] md:h-[31%] bg-[#171719] justify-between pt-4 md:pt-10">
+      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center">
+        <img class="w-full h-full object-contain" src="/assets/svg/mines.png" alt="">
       </div>
-      <div class="w-[15%] h-[80%] bg-[#303030] rounded-2xl ">
-        <img class="rounded-2xl h-full w-full" src="/assets/svg/crash.png" alt="crash game">
+      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center">
+        <img class="rounded-2xl w-full h-full object-contain" src="/assets/svg/crash.png" alt="crash game">
       </div>
-      <div class="w-[15%] h-[80%] bg-[#303030] rounded-2xl ">
-        <div class="flex justify-center items-center w-full h-full">
-          <img class="w-full h-full object-contain" src="/assets/svg/steamKey.png" alt="">
-        </div>
+      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center">
+        <img class="w-full h-full object-contain" src="/assets/svg/steamKey.png" alt="">
       </div>
-      <div class="w-[15%] h-[80%] bg-[#303030] rounded-2xl ">
+      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center">
         <img class="w-full h-full object-contain" src="/assets/svg/discount.png" alt="discounted cases">
       </div>
-      <div class="w-[15%] h-[80%] bg-[#303030] rounded-2xl ">
+      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center">
         <img class="w-full h-full object-contain" src="/assets/svg/shop.png" alt="">
       </div>
     </div>
@@ -97,9 +95,9 @@
       </div> 
 
     </div>
-    <div class="flex items-center flex-col w-full h-[31%] bg-[#171719]">
+    <div class="flex items-center flex-col w-full flex-1 bg-[#171719]">
       <p class="text-2xl text-black">Recent wins</p>
-      <div class="flex items-center justify-center w-full h-full">
+      <div class="flex items-center justify-center w-full flex-1">
         You won 450 gems!
       </div>
     </div>

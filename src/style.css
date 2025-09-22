@@ -26,6 +26,29 @@
         @apply absolute w-6 h-6 opacity-0 pointer-events-none;
         transform: scale(0);
       }
+
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.responsive-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .responsive-container {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+  .responsive-img {
+    max-width: 100%;
+    height: auto;
+  }
+}
       .btn:hover .gem {
         animation: spew 900ms cubic-bezier(.16,.9,.31,1) forwards;
       }
