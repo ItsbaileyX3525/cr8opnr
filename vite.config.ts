@@ -12,6 +12,7 @@ export default defineConfig({
         		login: './login.html',
 				notfound: './404.html'
 			}
-		}
+		},
+		sourcemap: true,
 	}
 });

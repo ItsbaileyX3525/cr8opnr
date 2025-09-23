@@ -18,8 +18,6 @@ form.addEventListener("submit", async (e) => {
         return
     }
 
-    console.log(username, email, password, confirmPassword)
-
 	fetch("/api/signup", {
 		method: "POST",
 		headers: {
@@ -37,7 +35,16 @@ form.addEventListener("submit", async (e) => {
 		}
 		const data = await response.json();
         if (data.success == true) {
-            console.log("Account created!")
+            statusText.classList.add("text-green-300")
+            statusText.classList.remove("text-red-500")
+            statusText.innerText = "Account created successfully!"
+            setTimeout(() => {
+                window.location.href = "/"
+            }, 2500);
+        } else {
+            statusText.classList.remove("text-green-300")
+            statusText.classList.add("text-red-500")
+            statusText.innerText = data.message
         }
 	});
 })
