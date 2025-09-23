@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" class="w-screen h-screen">
+<head>
+  <meta charset="UTF-8">
+  <link href="/src/style.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+</head>
+<body class="w-full h-full bg-gray-600">
+<div id="app" class="w-full h-full">
+  <div class="min-h-[60px] w-full bg-[#1d2225] flex justify-center items-center px-2 py-2">
+    <img onclick="window.location='/'" class="w-10 h-10 md:w-14 md:h-14 cursor-pointer" src="/assets/svg/house.svg" alt="house image">
+  </div>
+  <div class="mt-10 absolute right-1/2 translate-x-1/2 min-w-[80vw] h-[80%]">
+    <div class="flex flex-col items-center bg-gray-400 w-full h-full rounded-xl">
+        <p class="text-2xl mt-5">
+            Register
+        </p>
+        <p id="status-text" class="mt-10 text-2xl text-green-400">
+            Everything looks OK!
+        </p>
+        <form id="register-form" action="/register" method="post" autocomplete="on" class="flex flex-col justify-center gap-3 h-full">
+            <div class="flex flex-col gap-1">
+                <label for="username" class="sr-only">Username</label>
+                <input id="username" name="username" type="text" placeholder="Username" maxlength="16" minlength="3" required class="text-center bg-gray-600 rounded-sm text-2xl py-2 px-3">
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label for="email" class="sr-only">Email</label>
+                <input id="email" name="email" type="email" placeholder="JohnDoe@example.com" required class="text-center bg-gray-600 rounded-sm text-2xl py-2 px-3">
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label for="password" class="sr-only">Password</label>
+                <input id="password" name="password" type="password" placeholder="Password" minlength="5" required class="text-center bg-gray-600 rounded-sm text-2xl py-2 px-3">
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label for="confirm-password" class="sr-only">Confirm password</label>
+                <input id="confirm-password" name="confirm-password" type="password" placeholder="Confirm password" minlength="5" required class="text-center bg-gray-600 rounded-sm text-2xl py-2 px-3">
+            </div>
+
+            <button type="submit" id="submit-button" class="text-center bg-blue-500 py-3 w-[20vw] self-center rounded-md mt-5 text-2xl cursor-pointer hover:-translate-y-0.5 active:translate-y-0.5">
+                Signup!
+            </button>
+        </form>
+    </div>    
+  </div>
+
+</div>
+</body>
+<script type="module" src="/src/signup.ts"></script>
+</html>
