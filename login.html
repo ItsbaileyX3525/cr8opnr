@@ -7,22 +7,22 @@
   <link href="/src/style.css" rel="stylesheet">
  
 </head>
-<body class="w-full h-full bg-gray-600">
+<body class="w-full h-full bg-gray-700">
   <div id="app" class="w-full h-full">
     <div class="min-h-[60px] w-full bg-[#1d2225] flex justify-center items-center px-2 py-2">
       <img onclick="window.location='/'" class="w-10 h-10 md:w-14 md:h-14 cursor-pointer" src="/assets/svg/house.svg" alt="house image">
     </div>
     <div class="flex justify-center mt-10 w-full h-[80vh]">
       <div class="flex flex-col items-center w-4/5 h-full">
-        <p class="text-3xl mb-6">Login</p>
+        <p class="text-3xl mb-6 text-green-300">Login</p>
         <p id="status-text" class="text-xl text-green-300">Everything looks ok</p>
         <div class="flex items-center h-full pb-[15%]">
-          <form id="login-form" class="flex flex-col items-center w-full max-w-sm">
-            <label for="login-username" class="mb-2 w-full text-left">Username</label>
+          <form id="login-form" class="flex flex-col items-center w-full max-w-sm bg-gray-500 p-6 rounded-2xl shadow-lg shadow-green-50/100">
+            <label for="login-username" class="mb-2 w-full text-left flex justify-center font-extrabold">Username</label>
             <input id="login-username" name="username" type="text" class="mb-4 px-3 py-2 w-full rounded border border-gray-400" required>
-            <label for="login-password" class="mb-2 w-full text-left">Password</label>
+            <label for="login-password" class="mb-2 w-full text-left flex justify-center font-extrabold">Password</label>
             <input id="login-password" name="password" type="password" class="mb-6 px-3 py-2 w-full rounded border border-gray-400" required>
-            <button id="login-submit" type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700">Login</button>
+            <button id="login-submit" type="submit" class="bg-green-400 text-white px-4 py-2 rounded-2xl w-full hover:bg-green-700">Login</button>
           </form>
         </div>    
       </div>
