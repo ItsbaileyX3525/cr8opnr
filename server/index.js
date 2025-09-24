@@ -119,7 +119,15 @@ app.post("/api/signup", (req, res) => {
     const { username, email, password } = req.body;
 
     bcrypt.genSalt(saltRounds, function(err, salt) {
+        if (err) {
+            console.log("Error generating salt:", err);
+            return res.status(500).json({ success: false, error: "Internal server error" });
+        }
         bcrypt.hash(password, salt, async function(err, hash) {
+            if (err) {
+                console.log("Error hashing password:", err);
+                return res.status(500).json({ success: false, error: "Internal server error" });
+            }
             let conn;
             try {
                 conn = await pool.getConnection();
@@ -149,11 +157,14 @@ app.post("/api/signup", (req, res) => {
                     [username, email, hash]
                 );
 
-                res.status(200).send({ success: true });
+                const idResult = await conn.query("SELECT LAST_INSERT_ID() as id");
+                const userId = Number(idResult[0].id);
+                req.session.userId = userId;
+
+                res.status(200).send({ success: true, userId: userId });
             } catch (err) {
                 console.log("Error:", err);
-                res.status(200).send({ success: false });
-                return;
+                res.status(500).json({ success: false, error: "Internal server error" });
             } finally {
                 if (conn) conn.release();
             }
