@@ -6,25 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
 </head>
-<body class="w-full h-full bg-gray-700">
+<body class="w-full h-full bg-gray-600">
     <div id="app" class="w-full h-full">
         <div class="min-h-[60px] w-full bg-[#1d2225] flex justify-center items-center px-2 py-2">
             <img onclick="window.location='/'" class="w-10 h-10 md:w-14 md:h-14 cursor-pointer" src="/assets/svg/house.svg" alt="house image">
         </div>
         <div class="flex justify-center mt-10 w-full h-[80vh]">
             <div class="flex flex-col items-center w-4/5 h-full">
-                <p class="text-green-300 text-3xl mb-6">Register</p>
+                <p class="text-3xl mb-6">Register</p>
                 <p id="status-text" class="text-xl text-green-400">Everything looks fine!</p>
-                <form id="register-form" class="flex flex-col items-center w-full max-w-sm bg-gray-500 p-6 rounded-2xl shadow-lg shadow-green-50/100">
-                    <label for="register-username" class="font-extrabold flex mb-2 w-full text-left justify-center">Username</label>
+                <form id="register-form" class="flex flex-col items-center w-full max-w-sm">
+                    <label for="register-username" class="mb-2 w-full text-left">Username</label>
                     <input id="register-username" name="username" type="text" class="mb-4 px-3 py-2 w-full rounded border border-gray-400" required>
-                    <label for="register-email" class="font-extrabold  flex justify-center mb-2 w-full text-left">Email</label>
+                    <label for="register-email" class="mb-2 w-full text-left">Email</label>
                     <input id="register-email" name="email" type="email" class="mb-4 px-3 py-2 w-full rounded border border-gray-400" required>
-                    <label for="register-password" class="font-extrabold  flex justify-center mb-2 w-full text-left">Password</label>
+                    <label for="register-password" class="mb-2 w-full text-left">Password</label>
                     <input id="register-password" name="password" type="password" class="mb-4 px-3 py-2 w-full rounded border border-gray-400" required>
-                    <label for="register-confirm-password" class="font-extrabold  flex justify-center mb-2 w-full text-left">Confirm Password</label>
+                    <label for="register-confirm-password" class="mb-2 w-full text-left">Confirm Password</label>
                     <input id="register-confirm-password" name="confirm-password" type="password" class="mb-6 px-3 py-2 w-full rounded border border-gray-400" required>
-                    <button id="register-submit" type="submit" class="bg-green-400 text-white px-4 py-2 rounded-2xl w-full hover:bg-green-700">Register</button>
+                    <button id="register-submit" type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-green-700">Register</button>
                 </form>
             </div>
         </div>

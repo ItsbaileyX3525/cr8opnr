@@ -2,11 +2,14 @@ interface userObeject {
     gems: number
 }
 
-let userId: string
+export let userId: string
 let myUserData: userObeject
 
 //Setup dom content shit
 const gemCounter = document.getElementById('gem-balance') as HTMLParagraphElement;
+const signinButton = document.getElementById('signin-button') as HTMLParagraphElement;
+const registerButton = document.getElementById('register-button') as HTMLParagraphElement;
+const signoutButton = document.getElementById('signout-button') as HTMLParagraphElement;
 
 async function whoAmI(): Promise<void> {
     const res = await fetch('/api/me', {
@@ -40,6 +43,9 @@ async function loadWebsite(): Promise<void> {
         return
     }
     gemCounter.innerText = String(myUserData.gems)
+    signinButton.classList.add('hidden');
+    registerButton.classList.add('hidden');
+    signoutButton.classList.remove('hidden');
 }
 
 document.addEventListener("DOMContentLoaded", async () => {

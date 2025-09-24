@@ -1,9 +1,11 @@
+import { userId } from 'src/main.ts'
 const profileContainer = document.getElementById("profile-container") as HTMLImageElement;
 //const gemBalance = document.getElementById("gem-balance") as HTMLParagraphElement;
 const profileContainerDropDown = document.getElementById("profile-dropdown") as HTMLDivElement;
 const signinButton = document.getElementById("signin-button") as HTMLParagraphElement;
 const registerButton = document.getElementById("register-button") as HTMLParagraphElement;
 //const settingsButton = document.getElementById("settings-button") as HTMLParagraphElement;
+const signoutButton = document.getElementById('signout-button') as HTMLParagraphElement;
 
 profileContainer.addEventListener("click", () => {
     if (profileContainerDropDown.classList.contains("hidden")) {
@@ -19,6 +21,12 @@ signinButton.addEventListener("click", () => {
 
 registerButton.addEventListener("click", () => {
     window.location.href = "/register"
+});
+
+signoutButton.addEventListener("click", () => {
+    window.location.href = "/signout"
+    //userId = null
+
 });
 
 // Why does this affect other statements when the previous statement doesnt end in a ;?

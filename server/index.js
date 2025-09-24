@@ -35,7 +35,11 @@ app.use(express.static(path.join(__dirname, "../dist")));
 app.get("/:page", (req, res, next) => {
     const filePath = path.join(__dirname, "../dist", req.params.page + ".html");
     res.sendFile(filePath, err => {
-        if (err) next();
+        if (err) {
+            res.sendFile(path.join(__dirname, "../dist/404.html"), err => {
+                if (err) next();
+            });
+        };
     });
 });
 
@@ -73,6 +77,16 @@ app.get("/api/user/:id", requireLogin, requireOwner, async (req, res) => {
         if (conn) conn.release();
     }
 });
+
+app.get("/signout", (req, res) => {
+    if(!req.session.userId) {
+        return res.status(401).json({ success: false, message: "Not logged in!" });
+    }
+
+    req.session.userId = null //Think this works
+
+    res.status(200).json({ success: true, message: "Logged out!"})
+})
 
 app.get("/api/me", (req, res) => {
     if (!req.session.userId) {

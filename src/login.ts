@@ -30,7 +30,7 @@ form.addEventListener("submit", async (e) => {
             statusText.innerText = "Logged in successfully!"
             setTimeout(() => {
                 window.location.href = "/"
-            }, 2500);
+            }, 1500);
         } else {
             statusText.classList.remove("text-green-300")
             statusText.classList.add("text-red-500")
