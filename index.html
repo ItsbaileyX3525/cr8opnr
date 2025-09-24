@@ -4,58 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/src/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
-<body class="min-h-screen w-full text-[#f7f8fa]">
+<body class="overflow-hidden min-h-screen w-full text-[#f7f8fa] font-poppins bg-gradient-to-b from-[#1b1c1f] to-[#0f1012]">
   <div id="app" class="flex flex-col min-h-screen w-full">
-  <div class="min-h-[60px] w-full bg-[#1d2225] flex items-center justify-between px-2 py-2">
-  <p class="text-2xl md:text-3xl ml-2 md:ml-4 font-[BitcountGridDouble]">
+    
+    <!-- Header -->
+    <div class="min-h-[60px] w-full bg-[#1d2225] flex items-center justify-between px-4 py-2 shadow-lg">
+      <p class="text-2xl md:text-3xl font-extrabold drop-shadow-md">
         CR8OPNR
       </p>
-  <img class="w-10 h-10 md:w-14 md:h-14" src="/assets/svg/house.svg" alt="house image">
-  <div class="flex mr-2 md:mr-4 justify-center items-center text-lg md:text-2xl">
-        <div class="flex">
-          <div class="flex bg-[#303030] rounded-2xl px-2 py-1 mr-2">
-            <img class="w-6 h-6 md:w-8 md:h-8 mb-0.5" src="/assets/svg/gem.png" alt=""> 
-            <p id="gem-balance" class="ml-4">0</p>
-          </div>
+      <img class="w-10 h-10 md:w-14 md:h-14" src="/assets/svg/house.svg" alt="house image">
+      <div class="flex items-center space-x-4 text-lg md:text-2xl relative">
+        <div class="flex bg-[#303030] rounded-2xl px-3 py-1 shadow-inner items-center ring-1 ring-purple-500/30">
+          <img class="w-6 h-6 md:w-8 md:h-8 mb-0.5" src="/assets/svg/gem.png" alt="">
+          <p id="gem-balance" class="ml-3 text-white font-semibold drop-shadow-sm">0</p>
         </div>
-        <img id="profile-container" class="ml-2 md:ml-4 rounded-full w-10 h-10 md:w-12 md:h-12 cursor-pointer" src="/assets/svg/default.png" alt="profile image">
-        <div id="profile-dropdown" class="hidden absolute right-0 top-[65px] bg-gray-600 rounded-xl px-2 py-1 select-none">
-          <p>
-            Not logged in
-          </p>
-          <p id="settings-button" class="border-black border-t-2 cursor-pointer">
-            Settings
-          </p>
-          <p id="signin-button" class="border-black border-t-2 cursor-pointer">
-            Sign in
-          </p>
-          <p id="register-button" class="border-black border-t-2 cursor-pointer">
-            Register
-          </p>
-          <p id="signout-button" class="hidden border-black border-t-2 cursor-pointer">
-            Signout
-          </p>
+        <img id="profile-container" class="ml-2 md:ml-4 rounded-full w-10 h-10 md:w-12 md:h-12 cursor-pointer shadow-lg ring-2 ring-purple-400/40" src="/assets/svg/default.png" alt="profile image">
+        <div id="profile-dropdown" class="hidden absolute right-0 top-[65px] bg-green-500 rounded-xl px-3 py-2 select-none shadow-2xl">
+          <p class="font-extrabold">Not logged in</p>
+          <p id="settings-button" class="border-white border-t-2 cursor-pointer font-extrabold flex justify-center">Settings</p>
+          <p id="signin-button" class="border-white border-t-2 cursor-pointer font-extrabold flex justify-center">Sign in</p>
+          <p id="register-button" class="border-white border-t-2 cursor-pointer font-extrabold flex justify-center">Register</p>
         </div>
       </div>
     </div>
-  <div class="flex flex-wrap w-full min-h-[200px] md:h-[31%] bg-[#171719] justify-between pt-4 md:pt-10">
-      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center">
+
+    <!-- Game Tiles -->
+    <div class="flex flex-wrap w-full min-h-[200px] md:h-[31%] bg-[#171719] justify-between pt-4 md:pt-10">
+      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-purple-500/30">
         <img class="w-full h-full object-contain" src="/assets/svg/mines.png" alt="">
       </div>
-      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center">
-        <img class="rounded-2xl w-full h-full object-contain" src="/assets/svg/crash.png" alt="crash game">
+      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-pink-500/30">
+        <img class="w-full h-full object-contain rounded-2xl" src="/assets/svg/crash.png" alt="crash game">
       </div>
-      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center">
+      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-blue-500/30">
         <img class="w-full h-full object-contain" src="/assets/svg/steamKey.png" alt="">
       </div>
-      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center">
+      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-green-500/30">
         <img class="w-full h-full object-contain" src="/assets/svg/discount.png" alt="discounted cases">
       </div>
-      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center">
+      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-yellow-500/30">
         <img class="w-full h-full object-contain" src="/assets/svg/shop.png" alt="">
       </div>
     </div>
+
+    <!-- Case Showcase -->
     <div class="flex w-full h-[31%] bg-[#171719] border-black border-t-5">
       <div class="flex justify-between items-center w-full h-full bg-gray-600">
         <div class="cursor-pointer flex items-center">
@@ -71,43 +65,146 @@
               <p class="translate-y-1.5 -translate-x-1">100</p>
               <img class="w-10 h-10" src="/assets/svg/gem.png" alt="">
             </div>
-      <button class="btn relative cursor-pointer inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold px-6 py-3 rounded-2xl shadow-lg overflow-visible transition-transform duration-150 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl mt-8" aria-label="Buy case">
-       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 -ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-         <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v6m0 6v6M3 12h6m6 0h6M5 5l4 4M15 15l4 4M19 5l-4 4M9 15L5 19" />
-       </svg>
-       <span class="relative z-10">Buy case</span>
-       <img src="/assets/svg/gem.png" class="gem" style="left:50%; top:50%; --tx:-36px; --ty:-92px;" />
-       <img src="/assets/svg/gem.png" class="gem" style="left:50%; top:50%; --tx:12px; --ty:-110px;" />
-       <img src="/assets/svg/gem.png" class="gem" style="left:50%; top:50%; --tx:72px; --ty:-68px;" />
-       <img src="/assets/svg/gem.png" class="gem" style="left:50%; top:50%; --tx:-80px; --ty:-38px;" />
-       <img src="/assets/svg/gem.png" class="gem" style="left:50%; top:50%; --tx:96px; --ty:-12px;" />
-       <img src="/assets/svg/gem.png" class="gem" style="left:50%; top:50%; --tx:-54px; --ty:18px;" />
-       <img src="/assets/svg/gem.png" class="gem" style="left:50%; top:50%; --tx:34px; --ty:84px;" />
-       <img src="/assets/svg/gem.png" class="gem" style="left:50%; top:50%; --tx:-12px; --ty:110px;" />
-          </button>       
-    </div>
-
+            <button class="btn relative cursor-pointer inline-flex items-center gap-5 bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold px-6 py-3 rounded-2xl shadow-xl hover:-translate-y-1 hover:scale-105 hover:shadow-2xl transition-all duration-200 mt-10 ring-2 ring-purple-400/40" aria-label="Buy case">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 -ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v6m0 6v6M3 12h6m6 0h6M5 5l4 4M15 15l4 4M19 5l-4 4M9 15L5 19" />
+              </svg>
+              <span class="relative z-10">Buy case</span>
+            </button>       
+          </div>
           <div>
             <img src="/assets/cases/cactus.png" class="opacity-65" alt="">
           </div>
         </div>
-        
         <div class="cursor-pointer flex items-center">
           <img class="w-10 h-16" src="/assets/svg/gt.png" alt="next case">
         </div>
       </div> 
-
     </div>
-    <div class="flex items-center flex-col w-full flex-1 bg-[#171719]">
-      <p class="text-2xl text-black">Recent wins</p>
-      <div class="flex items-center justify-center w-full flex-1">
-        You won 450 gems!
+
+    <!-- Winner Banner -->
+    <div class="flex items-center flex-col w-full flex-1 bg-[#171719] mt-4">
+      <div id="random-winner-banner" class="w-full bg-[#303030] text-white py-6 rounded-lg overflow-hidden relative h-20 shadow-inner ring-2 ring-purple-500/20">
+        <div id="random-winner-text" class="absolute flex h-full whitespace-nowrap space-x-8 items-center text-lg font-semibold drop-shadow-sm">
+        </div>
       </div>
     </div>
-  
 
   </div>
 </body>
 <script type="module" src="/src/main.ts"></script>
 <script type="module" src="/src/loadData.ts"></script>
+<script>
+const prizes = [
+  "won a Steam gift card!",
+  "won a Steam key!",
+  "won 2 Steam keys!",
+  "won 3 Steam keys!",
+  "won 5 Steam keys!",
+  "won a mystery Steam key!",
+  "won a random Steam bundle!",
+  "won a Steam wallet code!",
+  "won an exclusive Steam game drop!",
+  "won a surprise Steam code pack!",
+  "won 50 gems!",
+  "won 100 gems!",
+  "won 150 gems!",
+  "won 200 gems!",
+  "won 250 gems!",
+  "won 300 gems!",
+  "won 400 gems!",
+  "won 500 gems!",
+  "won 600 gems!",
+  "won 750 gems!",
+  "won 800 gems!",
+  "won 900 gems!",
+  "won 1000 gems!",
+  "won 1200 gems!",
+  "won 1500 gems!",
+  "won 2000 gems!",
+  "won 2500 gems!",
+  "won a jackpot of 5000 gems!",
+  "won a mega 10000 gems prize!",
+  "won a free case!",
+  "won 2 free cases!",
+  "won 3 free cases!",
+  "won a discounted case!",
+  "won a premium case!",
+  "won a golden case!",
+  "won an exclusive case bundle!",
+  "won a surprise bonus case!",
+  "won a rare free case drop!",
+  "won a mystery case pack!"
+];
+const names = [
+  "Alice", "Bob", "Charlie", "Diana", "Eve", "Frank", "Grace", "Hank", "Ivy", "Jack",
+  "Karen", "Leo", "Mona", "Nina", "Oscar", "Paul", "Quinn", "Rita", "Steve", "Tina",
+  "Uma", "Victor", "Wendy", "Xander", "Yara", "Zane",
+  "Aaron", "Abby", "Adrian", "Aiden", "Alex", "Alexa", "Amelia", "Andre", "Angela", "Anthony",
+  "Bella", "Ben", "Bianca", "Blake", "Brandon", "Brianna", "Brooke", "Bruce", "Bryan", "Caleb",
+  "Cameron", "Cara", "Carla", "Carter", "Cathy", "Chloe", "Chris", "Clara", "Cole", "Colin",
+  "Daniel", "Derek", "Destiny", "Diego", "Donna", "Dylan", "Edward", "Elena", "Elijah", "Ella",
+  "Emily", "Eric", "Ethan", "Fiona", "Finn", "Gabby", "Gabe", "Gavin", "George", "Gina",
+  "Hailey", "Harper", "Harry", "Hazel", "Henry", "Hope", "Hunter", "Iris", "Isabel", "Ivan",
+  "Jade", "James", "Jamie", "Jasmine", "Jason", "Jenna", "Jennifer", "Jeremy", "Jessica", "Joel",
+  "Jordan", "Jose", "Joseph", "Joy", "Julia", "Justin", "Kara", "Kate", "Katherine", "Kayla",
+  "Kelly", "Kevin", "Kim", "Kyle", "Lara", "Laura", "Lauren", "Liam", "Lily", "Logan",
+  "Louis", "Lucas", "Lucy", "Luis", "Luke", "Maddie", "Madison", "Marcus", "Maria", "Mark",
+  "Mason", "Matthew", "Maya", "Megan", "Melissa", "Michael", "Michelle", "Miles", "Naomi", "Natalie",
+  "Nathan", "Nicole", "Noah", "Olivia", "Owen", "Pam", "Patricia", "Patrick", "Peter", "Peyton",
+  "Phoebe", "Rachel", "Ray", "Rebecca", "Richard", "Robert", "Rose", "Ruby", "Ryan", "Samantha",
+  "Samuel", "Sandra", "Sara", "Sarah", "Scott", "Sean", "Sebastian", "Seth", "Sophia", "Spencer",
+  "Stella", "Summer", "Susan", "Sydney", "Taylor", "Thomas", "Travis", "Trinity", "Tyler", "Valerie",
+  "Vanessa", "Veronica", "Vince", "Violet", "Vivian", "Walter", "Will", "William", "Willow", "Wyatt",
+  "Zach", "Zara", "Zeke", "Zoey"
+];
+function censorname(name) {
+  return name.slice(0, 2) + "*****"
+}
+
+function generatewinner() {
+  const randomname = names[Math.floor(Math.random() * names.length)]
+  const censoredname = censorname(randomname)
+  const randomprize = prizes[Math.floor(Math.random() * prizes.length)]
+  return `${censoredname} ${randomprize}`
+}
+
+function populatescrollingtext() {
+  const textcontainer = document.getElementById("random-winner-text")
+  if (textcontainer) {
+    textcontainer.innerHTML = ""
+    for (let i = 0; i < 15; i++) {
+      const winner = document.createElement("span")
+      winner.textContent = generatewinner()
+      winner.className = "px-6"
+      textcontainer.appendChild(winner)
+    }
+  }
+}
+
+function startcontinuousscrolling() {
+  const textcontainer = document.getElementById("random-winner-text")
+  const banner = document.getElementById("random-winner-banner")
+  if (textcontainer && banner) {
+    let position = banner.offsetWidth
+    function scroll() {
+      position -= 1
+      if (position <= -textcontainer.offsetWidth) {
+        position = banner.offsetWidth
+      }
+      textcontainer.style.transform = `translateX(${position}px)`
+      requestAnimationFrame(scroll)
+    }
+    textcontainer.style.position = "absolute"
+    textcontainer.style.marginTop = "-40px"
+    textcontainer.style.transform = "translateY(-50%)"
+    scroll()
+  }
+}
+
+window.addEventListener("load", () => {
+  populatescrollingtext()
+  startcontinuousscrolling()
+})
+</script>
 </html>
