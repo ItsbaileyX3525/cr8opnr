@@ -19,13 +19,21 @@
           <img class="w-6 h-6 md:w-8 md:h-8 mb-0.5" src="/assets/svg/gem.png" alt="">
           <p id="gem-balance" class="ml-3 text-white font-semibold drop-shadow-sm">0</p>
         </div>
-        <img id="profile-container" class="ml-2 md:ml-4 rounded-full w-10 h-10 md:w-12 md:h-12 cursor-pointer shadow-lg ring-2 ring-purple-400/40" src="/assets/svg/default.png" alt="profile image">
-        <div id="profile-dropdown" class="hidden absolute right-0 top-[65px] bg-green-500 rounded-xl px-3 py-2 select-none shadow-2xl">
-          <p id="username-text" class="font-extrabold text-[20px]">Not logged in</p>
-          <p id="settings-button" class="border-white border-t-2 cursor-pointer font-extrabold flex justify-center">Settings</p>
-          <p id="signin-button" class="border-white border-t-2 cursor-pointer font-extrabold flex justify-center">Sign in</p>
-          <p id="register-button" class="border-white border-t-2 cursor-pointer font-extrabold flex justify-center">Register</p>
-          <p id="signout-button" class="border-white border-t-2 cursor-pointer font-extrabold hidden justify-center">Sign out</p>
+        <img id="profile-container" class="ml-2 md:ml-4 rounded-full w-10 h- md:w-12 md:h-12 cursor-pointer shadow-lg ring-2 ring-purple-400/40" src="/assets/svg/default.png" alt="profile image">
+        <div id="profile-dropdown" class=" absolute right-0 top-[65px] bg-[#1d1d1d] rounded-xl px-3 py-2 select-none shadow-2xl h-60 w-50 ">
+          <p id="username-text" class="flex justify-center font-extrabold text-[20px]">Not logged in</p>
+          <div id="settings-container" class="bg-[#303030] px-3 py-1 mt-2 mb-2 shadow-inner items-center ring-1 ring-purple-500/30 cursor-pointer flex justify-center">
+            <img src="public/assets/svg/settings-5672.svg" alt="settings" class="w-5 h-5 inline-block "> <p id="settings-button" class="cursor-pointer font-extrabold inline-block ml-6">Settings</p>
+          </div>
+          <div id="signin-container" class="bg-[#303030] px-3 py-1 mt-2 mb-2 shadow-inner items-center ring-1 ring-purple-500/30 cursor-pointer flex justify-center">
+            <img src="public/assets/svg/login-svgrepo-com.svg" alt="login" class="w-6 h-6 inline-block mr-6"> <p id="signin-button" class=" cursor-pointer font-extrabold inline-block mr-5">Sign in</p>
+          </div>
+          <div id="register-container" class="bg-[#303030] px-3 py-1 mt-2 mb-2 shadow-inner intems-center ring-1 ring-purple-500/300 cursor-pointer flex jusify-center">
+            <img src="public/assets/svg/registration-1.svg" alt="register" class="w-8 h-8 inline-block ml-1"><p id="register-button" class=" cursor-pointer font-extrabold inline-block ml-4">Register</p>
+          </div>
+          <div id="signout-container" class=" bg-[#303030] px-3 py-1 mt-2 mb-2 shadow-inner items-center ring-1 ring-purple-500/30 cursor-pointer  justify-center">
+           <img src="public/assets/svg/Logout.svg" alt="signout" class="w-6 h-6 inline-block ml-2"> <p id="signout-button" class="cursor-pointer font-extrabold inline-block ml-2">Sign out</p>
+          </div>
         </div>
       </div>
     </div>
@@ -50,8 +58,8 @@
     </div>
 
     <!-- Case Showcase -->
-    <div class="flex w-full h-[31%] bg-[#171719] border-black border-t-5">
-      <div class="flex justify-between items-center w-full h-full bg-gray-600">
+    <div class="flex w-full h-[31%] bg-[#171719]  ">
+      <div class="flex justify-between items-center w-full h-full bg-[#171719]">
         <div class="cursor-pointer flex items-center">
           <img class="w-10 h-16" src="/assets/svg/lt.png" alt="">
         </div>
@@ -60,12 +68,12 @@
             <img src="/assets/cases/light_blue.png" class="opacity-65" alt="">
           </div>
           <div class="flex flex-col">
-            <img src="/assets/cases/yellow.png" alt="">
             <div class="flex justify-center pt-5">
               <p class="translate-y-1.5 -translate-x-1">100</p>
               <img class="w-10 h-10" src="/assets/svg/gem.png" alt="">
             </div>
-            <button class="btn relative cursor-pointer inline-flex items-center gap-5 bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold px-6 py-3 rounded-2xl shadow-xl hover:-translate-y-1 hover:scale-105 hover:shadow-2xl transition-all duration-200 mt-10 ring-2 ring-purple-400/40" aria-label="Buy case">
+            <img src="/assets/cases/yellow.png" alt="" class="">
+            <button class="btn relative cursor-pointer inline-flex items-center gap-5 bg-[#b366ff] text-white font-bold px-6 py-3 rounded-2xl shadow-xl hover:-translate-y-1 hover:scale-105 hover:shadow-2xl transition-all duration-200 mt-10 ring-2 ring-purple-400/40" aria-label="Buy case">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 -ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v6m0 6v6M3 12h6m6 0h6M5 5l4 4M15 15l4 4M19 5l-4 4M9 15L5 19" />
               </svg>
@@ -84,7 +92,7 @@
 
     <!-- Winner Banner -->
     <div class="flex items-center flex-col w-full flex-1 bg-[#171719] mt-4">
-      <div id="random-winner-banner" class="w-full bg-[#303030] text-white py-6 rounded-lg overflow-hidden relative h-20 shadow-inner ring-2 ring-purple-500/20">
+      <div id="random-winner-banner" class="w-full bg-[#303030] text-white py-6 rounded-lg overflow-hidden relative h-10 shadow-inner ring-2 ring-purple-500/20">
         <div id="random-winner-text" class="absolute flex h-full whitespace-nowrap space-x-8 items-center text-lg font-semibold drop-shadow-sm">
         </div>
       </div>
