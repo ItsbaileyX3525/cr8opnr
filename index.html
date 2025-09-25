@@ -21,7 +21,7 @@
           <p id="gem-balance" class="ml-3 text-white font-semibold drop-shadow-sm">0</p>
         </div>
         <img id="profile-container" class="ml-2 md:ml-4 rounded-full w-10 h- md:w-12 md:h-12 cursor-pointer shadow-lg ring-2 ring-purple-400/40" src="/assets/svg/default.png" alt="profile image">
-        <div id="profile-dropdown" class=" hidden absolute right-0 top-[65px] bg-[#1d1d1d] rounded-xl px-3 py-2 select-none shadow-2xl h-60 w-50 ">
+        <div id="profile-dropdown" class=" hidden absolute right-0 top-[65px] bg-[#1d1d1d] rounded-xl px-3 py-2 select-none shadow-2xl z-100 h-60 w-50 ">
           <p id="username-text" class="flex justify-center font-extrabold text-[20px]">Not logged in</p>
           <div id="settings-container" class="bg-[#303030] px-3 py-1 mt-2 mb-2 shadow-inner items-center ring-1 ring-purple-500/30 cursor-pointer flex justify-center">
             <img src="/assets/svg/settings-5672.svg" alt="settings" class="w-5 h-5 inline-block "> <p id="settings-button" class="cursor-pointer font-extrabold inline-block ml-6">Settings</p>
@@ -32,7 +32,7 @@
           <div id="register-container" class="bg-[#303030] px-3 py-1 mt-2 mb-2 shadow-inner intems-center ring-1 ring-purple-500/300 cursor-pointer flex jusify-center">
             <img src="/assets/svg/registration-1.svg" alt="register" class="w-8 h-8 inline-block ml-1"><p id="register-button" class=" cursor-pointer font-extrabold inline-block ml-4">Register</p>
           </div>
-          <div id="signout-container" class=" bg-[#303030] px-3 py-1 mt-2 mb-2 shadow-inner items-center ring-1 ring-purple-500/30 cursor-pointer  justify-center">
+          <div id="signout-container" class="hidden  bg-[#303030] px-3 py-1 mt-2 mb-2 shadow-inner items-center ring-1 ring-purple-500/30 cursor-pointer  justify-center">
            <img src="/assets/svg/Logout.svg" alt="signout" class="w-6 h-6 inline-block ml-2"> <p id="signout-button" class="cursor-pointer font-extrabold inline-block ml-2">Sign out</p>
           </div>
         </div>
@@ -50,7 +50,7 @@
 
       <div class="flex flex-col flex-1">
         <!-- Game Tiles -->
-        <div class="flex flex-wrap w-full  md:h-[25%] bg-[#171719] justify-between ">
+        <div class="flex flex-wrap w-full  md:h-[20%] bg-[#171719] justify-between ">
           <div class="flex-1 p-2 w-[30%] h-[85%]  bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-purple-500/30 hover:scale-[1.02] hover:bg-[#b366ff6d] hover:animate-pulse cursor-pointer">
             <img class="w-full h-full object-contain" src="/assets/svg/mines.png" alt="">
           </div>
@@ -71,8 +71,8 @@
        </div>
 
         <!-- Case Showcase -->
-        <div class="flex w-full h-[25%] bg-[#171719]  ">
-          <div class="flex justify-between items-center w-full h-full bg-[#171719]">
+        <div class="flex w-full h-[70%] bg-[#171719] mt-10 ">
+          <div class="flex justify-between items-center w-full h-[35%] max-h-[50%] bg-[#171719]">
             <div class="cursor-pointer flex items-center">
               <img class="w-10 h-16" src="/assets/svg/lt.png" alt="">
             </div>

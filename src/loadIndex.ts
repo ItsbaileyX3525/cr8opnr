@@ -11,8 +11,9 @@ let myUserData: userObeject
 const gemCounter = document.getElementById('gem-balance') as HTMLParagraphElement;
 const signinButton = document.getElementById('signin-button') as HTMLParagraphElement;
 const registerButton = document.getElementById('register-button') as HTMLParagraphElement;
-const signoutButton = document.getElementById('signout-button') as HTMLParagraphElement;
+const signoutContainer = document.getElementById('signout-container') as HTMLParagraphElement;
 const usernameText = document.getElementById('username-text') as HTMLParagraphElement;
+const signoutButton = document.getElementById('signout-button') as HTMLParagraphElement;
 
 async function whoAmI(): Promise<void> {
     const res = await fetch('/api/me', {
@@ -49,8 +50,7 @@ async function loadWebsite(): Promise<void> {
     usernameText.innerText = String(myUserData.username)
     signinButton.classList.add('hidden');
     registerButton.classList.add('hidden');
-    signoutButton.classList.remove('hidden');
-    signoutButton.classList.add('flex');
+    signoutContainer.classList.remove('hidden');
 }
 
 signoutButton.addEventListener("click", () => {
