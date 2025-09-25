@@ -154,8 +154,6 @@ function startcontinuouslist(): void {
       }
     }
     textcontainer.style.position = "absolute"
-    textcontainer.style.marginTop = "-25px"
-    textcontainer.style.transform = "translateY(-50%)"
     scroll()
   }
 
@@ -165,7 +163,4 @@ function startcontinuouslist(): void {
 document.addEventListener("DOMContentLoaded", () => {
   startcontinuouslist()
 })
-
-// Why does this affect other statements when the previous statement doesnt end in a ;?
-//(()=>{(()=>{(()=>{console.log("This works lol")})();})();})();
 
