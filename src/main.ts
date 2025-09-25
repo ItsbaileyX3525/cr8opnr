@@ -26,16 +26,16 @@ settingsButton.addEventListener("click", () => {
 });
 
 const prizes = [
-  "won a Steam gift card!",
+  "won a Steam card!",
   "won a Steam key!",
   "won 2 Steam keys!",
   "won 3 Steam keys!",
   "won 5 Steam keys!",
   "won a mystery Steam key!",
-  "won a random Steam bundle!",
-  "won a Steam wallet code!",
-  "won an exclusive Steam game drop!",
-  "won a surprise Steam code pack!",
+  "won a Steam bundle!",
+  "won a wallet code!",
+  "won an game drop!",
+  "won a code pack!",
   "won 50 gems!",
   "won 100 gems!",
   "won 150 gems!",
@@ -53,18 +53,18 @@ const prizes = [
   "won 1500 gems!",
   "won 2000 gems!",
   "won 2500 gems!",
-  "won a jackpot of 5000 gems!",
-  "won a mega 10000 gems prize!",
+  "won a jackpot of gems!",
+  "won a mega gem prize!",
   "won a free case!",
   "won 2 free cases!",
   "won 3 free cases!",
   "won a discounted case!",
   "won a premium case!",
   "won a golden case!",
-  "won an exclusive case bundle!",
-  "won a surprise bonus case!",
-  "won a rare free case drop!",
-  "won a mystery case pack!"
+  "won an case bundle!",
+  "won a bonus case!",
+  "won a case drop!",
+  "won a case pack!"
 ];
 
 const names = [
@@ -89,60 +89,74 @@ const names = [
   "Vanessa", "Veronica", "Vince", "Violet", "Vivian", "Walter", "Will", "William", "Willow", "Wyatt",
   "Zach", "Zara", "Zeke", "Zoey"
 ];
-function censorName(name: string) {
-  return name.slice(0, 2) + "*****"
+function censorname(name: string) {
+  return name.slice(0, 2) + "***"
 }
 
-
-function generateWinner(): string {
+function generatewinner(): string {
   const randomname = names[Math.floor(Math.random() * names.length)]
-  const censoredname = censorName(randomname)
+  const censoredname = censorname(randomname)
   const randomprize = prizes[Math.floor(Math.random() * prizes.length)]
   return `${censoredname} ${randomprize}`
 }
 
-function populateScrollingText(): void {
+function startcontinuouslist(): void {
   const textcontainer = document.getElementById("random-winner-text")
-  if (textcontainer) {
-    textcontainer.innerHTML = ""
-    for (let i = 0; i < 15; i++) {
-      const winner = document.createElement("span")
-      winner.textContent = generateWinner()
-      winner.className = "px-6"
-      textcontainer.appendChild(winner)
-    }
-  }
-}
+  if (!textcontainer) return
 
-function startContinuousScrolling(): void {
-  const textcontainer = document.getElementById("random-winner-text")
-  const banner = document.getElementById("random-winner-banner")
-  if (textcontainer && banner) {
-    let position = banner.offsetWidth
-    function scroll() {
-      position -= 1
-      if (textcontainer && banner) {
-        if (position <= -textcontainer.offsetWidth) {
-            position = banner.offsetWidth
-        }        
+  textcontainer.style.display = "flex"
+  textcontainer.style.flexDirection = "column"
+  textcontainer.style.justifyContent = "flex-end"
+  textcontainer.style.overflow = "hidden"
+  textcontainer.style.padding = "10px"
+  textcontainer.style.gap = "16px"
+  textcontainer.style.boxSizing = "border-box"
+  
+
+  const itemheight = 36
+  const maxitems = 14
+  const winners: HTMLDivElement[] = []
+
+  function addwinner() {
+    const wrapper = document.createElement("div")
+    wrapper.textContent = generatewinner()
+    wrapper.style.background = "linear-gradient(90deg, #b366ff, #8a2be2)"
+    wrapper.style.color = "#fff"
+    wrapper.style.fontSize = "13px"
+    wrapper.style.fontWeight = "600"
+    wrapper.style.height = `${itemheight}px`
+    wrapper.style.width = `250px`
+    wrapper.style.margin = "0 auto"
+    wrapper.style.display = "flex"
+    wrapper.style.alignItems = "center"
+    wrapper.style.justifyContent = "center"
+    wrapper.style.opacity = "0"
+    wrapper.style.transform = "translateY(30px)"
+    wrapper.style.transition = "all 0.4s ease"
+
+    textcontainer.appendChild(wrapper)
+    winners.push(wrapper)
+
+    requestAnimationFrame(() => {
+      wrapper.style.opacity = "1"
+      wrapper.style.transform = "translateY(0)"
+    })
+
+    if (winners.length > maxitems) {
+      const oldest = winners.shift()
+      if (oldest) {
+        oldest.style.opacity = "0"
+        oldest.style.transform = `translateY(-${itemheight + 6}px)`
+        setTimeout(() => oldest.remove(), 400)
       }
-
-
-      //Type script for fucks sake there is no way this is null
-      //@ts-ignore
-      textcontainer.style.transform = `translateX(${position}px)`
-      requestAnimationFrame(scroll)
     }
-    textcontainer.style.position = "absolute"
-    textcontainer.style.marginTop = "-40px"
-    textcontainer.style.transform = "translateY(-50%)"
-    scroll()
   }
+
+  setInterval(addwinner, 3000)
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    populateScrollingText()
-    startContinuousScrolling()
+  startcontinuouslist()
 })
 
 // Why does this affect other statements when the previous statement doesnt end in a ;?

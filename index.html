@@ -9,6 +9,7 @@
 <body class="overflow-hidden min-h-screen w-full text-[#f7f8fa] font-poppins bg-gradient-to-b from-[#1b1c1f] to-[#0f1012]">
   <div id="app" class="flex flex-col min-h-screen w-full">
     
+
     <!-- Header -->
     <div class="min-h-[60px] w-full bg-[#1d2225] flex items-center justify-between px-4 py-2 shadow-lg">
       <p class="text-2xl md:text-3xl font-extrabold drop-shadow-md">
@@ -20,7 +21,7 @@
           <p id="gem-balance" class="ml-3 text-white font-semibold drop-shadow-sm">0</p>
         </div>
         <img id="profile-container" class="ml-2 md:ml-4 rounded-full w-10 h- md:w-12 md:h-12 cursor-pointer shadow-lg ring-2 ring-purple-400/40" src="/assets/svg/default.png" alt="profile image">
-        <div id="profile-dropdown" class=" absolute right-0 top-[65px] bg-[#1d1d1d] rounded-xl px-3 py-2 select-none shadow-2xl h-60 w-50 ">
+        <div id="profile-dropdown" class=" hidden absolute right-0 top-[65px] bg-[#1d1d1d] rounded-xl px-3 py-2 select-none shadow-2xl h-60 w-50 ">
           <p id="username-text" class="flex justify-center font-extrabold text-[20px]">Not logged in</p>
           <div id="settings-container" class="bg-[#303030] px-3 py-1 mt-2 mb-2 shadow-inner items-center ring-1 ring-purple-500/30 cursor-pointer flex justify-center">
             <img src="public/assets/svg/settings-5672.svg" alt="settings" class="w-5 h-5 inline-block "> <p id="settings-button" class="cursor-pointer font-extrabold inline-block ml-6">Settings</p>
@@ -38,66 +39,71 @@
       </div>
     </div>
 
-    <!-- Game Tiles -->
-    <div class="flex flex-wrap w-full min-h-[200px] md:h-[31%] bg-[#171719] justify-between pt-4 md:pt-10">
-      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-purple-500/30">
-        <img class="w-full h-full object-contain" src="/assets/svg/mines.png" alt="">
-      </div>
-      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-pink-500/30">
-        <img class="w-full h-full object-contain rounded-2xl" src="/assets/svg/crash.png" alt="crash game">
-      </div>
-      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-blue-500/30">
-        <img class="w-full h-full object-contain" src="/assets/svg/steamKey.png" alt="">
-      </div>
-      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-green-500/30">
-        <img class="w-full h-full object-contain" src="/assets/svg/discount.png" alt="discounted cases">
-      </div>
-      <div class="flex-1 min-w-[120px] max-w-[200px] h-[120px] md:h-[80%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-yellow-500/30">
-        <img class="w-full h-full object-contain" src="/assets/svg/shop.png" alt="">
-      </div>
-    </div>
-
-    <!-- Case Showcase -->
-    <div class="flex w-full h-[31%] bg-[#171719]  ">
-      <div class="flex justify-between items-center w-full h-full bg-[#171719]">
-        <div class="cursor-pointer flex items-center">
-          <img class="w-10 h-16" src="/assets/svg/lt.png" alt="">
-        </div>
-        <div class="flex-1 flex justify-between pl-5 pr-5 items-center space-x-4">
-          <div>
-            <img src="/assets/cases/light_blue.png" class="opacity-65" alt="">
+    <div class="flex flex-row flex-1">
+      <!-- Sidebar -->
+      <div class="flex flex-col bg-[#171719] h-full w-[250px]">
+        <div id="random-winner-banner" class="w-full bg-[#1a1d20] text-white py-6 rounded-lg overflow-hidden relative h-180 ">
+          <div id="random-winner-text" class="absolute flex h-full whitespace-nowrap space-x-8 items-center text-lg font-semibold drop-shadow-sm">
           </div>
-          <div class="flex flex-col">
-            <div class="flex justify-center pt-5">
-              <p class="translate-y-1.5 -translate-x-1">100</p>
-              <img class="w-10 h-10" src="/assets/svg/gem.png" alt="">
+        </div>
+      </div>
+
+      <div class="flex flex-col flex-1">
+        <!-- Game Tiles -->
+        <div class="flex flex-wrap w-full  md:h-[25%] bg-[#171719] justify-between ">
+          <div class="flex-1 p-2 w-[30%] h-[85%]  bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-purple-500/30 hover:scale-[1.02] hover:bg-[#b366ff6d] hover:animate-pulse cursor-pointer">
+            <img class="w-full h-full object-contain" src="/assets/svg/mines.png" alt="">
+          </div>
+          <div class="flex-1 p-2 w-[30%] h-[85%] bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-pink-500/30 hover:scale-[1.02] hover:bg-[#b366ff6d] hover:animate-pulse cursor-pointer">
+            <img class="w-full h-full object-contain rounded-2xl" src="/assets/svg/crash.png" alt="crash game">
+          </div>
+        </div>
+        <div class="flex flex-wrap w-full bg-[#171719] justify-between ">
+          <div class="flex-1 w-[80px] h-[80px]  bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-blue-500/30 hover:scale-[1.02] hover:bg-[#b366ff6d] hover:animate-pulse cursor-pointer">
+            <img class="w-full h-full object-contain" src="/assets/svg/steamKey.png" alt="">
+          </div>
+          <div class="flex-1 w-[80px] h-[80px] bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-green-500/30 hover:scale-[1.02] hover:bg-[#b366ff6d] hover:animate-pulse cursor-pointer">
+            <img class="w-full h-full object-contain" src="/assets/svg/discount.png" alt="discounted cases">
+          </div>
+          <div class="flex-1 w-[80px] h-[80px] bg-[#303030] rounded-2xl m-2 flex items-center justify-center shadow-lg hover:shadow-2xl transition-shadow duration-300 ring-1 ring-yellow-500/30 hover:scale-[1.02] hover:bg-[#b366ff6d] hover:animate-pulse cursor-pointer">
+            <img class="w-full h-full object-contain" src="/assets/svg/shop.png" alt="">
+          </div>
+       </div>
+
+        <!-- Case Showcase -->
+        <div class="flex w-full h-[25%] bg-[#171719]  ">
+          <div class="flex justify-between items-center w-full h-full bg-[#171719]">
+            <div class="cursor-pointer flex items-center">
+              <img class="w-10 h-16" src="/assets/svg/lt.png" alt="">
             </div>
-            <img src="/assets/cases/yellow.png" alt="" class="">
-            <button class="btn relative cursor-pointer inline-flex items-center gap-5 bg-[#b366ff] text-white font-bold px-6 py-3 rounded-2xl shadow-xl hover:-translate-y-1 hover:scale-105 hover:shadow-2xl transition-all duration-200 mt-10 ring-2 ring-purple-400/40" aria-label="Buy case">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 -ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v6m0 6v6M3 12h6m6 0h6M5 5l4 4M15 15l4 4M19 5l-4 4M9 15L5 19" />
-              </svg>
-              <span class="relative z-10">Buy case</span>
-            </button>       
-          </div>
-          <div>
-            <img src="/assets/cases/cactus.png" class="opacity-65" alt="">
-          </div>
-        </div>
-        <div class="cursor-pointer flex items-center">
-          <img class="w-10 h-16" src="/assets/svg/gt.png" alt="next case">
-        </div>
-      </div> 
-    </div>
-
-    <!-- Winner Banner -->
-    <div class="flex items-center flex-col w-full flex-1 bg-[#171719] mt-4">
-      <div id="random-winner-banner" class="w-full bg-[#303030] text-white py-6 rounded-lg overflow-hidden relative h-10 shadow-inner ring-2 ring-purple-500/20">
-        <div id="random-winner-text" class="absolute flex h-full whitespace-nowrap space-x-8 items-center text-lg font-semibold drop-shadow-sm">
+            <div class="flex-1 flex justify-between pl-5 pr-5 items-center space-x-4">
+              <div>
+                <img src="/assets/cases/light_blue.png" class="opacity-65" alt="">
+              </div>
+              <div class="flex flex-col">
+                <div class="flex justify-center pt-5">
+                  <p class="translate-y-1.5 -translate-x-1">100</p>
+                  <img class="w-10 h-10" src="/assets/svg/gem.png" alt="">
+                </div>
+                <img src="/assets/cases/yellow.png" alt="" class="">
+                <button class="btn relative cursor-pointer inline-flex items-center gap-5 bg-[#b366ff] text-white font-bold px-6 py-3 rounded-2xl shadow-xl hover:-translate-y-1 hover:scale-105 hover:shadow-2xl transition-all duration-200 mt-10 ring-2 ring-purple-400/40" aria-label="Buy case">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 -ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v6m0 6v6M3 12h6m6 0h6M5 5l4 4M15 15l4 4M19 5l-4 4M9 15L5 19" />
+                  </svg>
+                  <span class="relative z-10">Buy case</span>
+                </button>       
+              </div>
+              <div>
+                <img src="/assets/cases/cactus.png" class="opacity-65" alt="">
+              </div>
+            </div>
+            <div class="cursor-pointer flex items-center">
+              <img class="w-10 h-16" src="/assets/svg/gt.png" alt="next case">
+            </div>
+          </div> 
         </div>
       </div>
     </div>
-
   </div>
 </body>
 <script type="module" src="/src/main.ts"></script>
