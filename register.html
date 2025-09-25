@@ -6,25 +6,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
 </head>
-<body class="w-full h-full bg-gray-700">
+<body class="w-full h-full bg-[#161c20]">
+    <div class="absolute inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <img src="/public/assets/svg/gem.png" class="absolute w-6 opacity-15 top-[3%] left-[8%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-10 opacity-25 top-[7%] left-[40%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-8 opacity-20 top-[12%] left-[75%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-7 opacity-30 top-[15%] left-[55%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-9 opacity-15 top-[20%] left-[20%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-12 opacity-20 top-[25%] left-[65%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-5 opacity-10 top-[28%] left-[85%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-14 opacity-25 top-[32%] left-[10%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-8 opacity-30 top-[38%] left-[50%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-7 opacity-20 top-[42%] left-[70%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-9 opacity-15 top-[48%] left-[25%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-11 opacity-20 top-[52%] left-[60%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-6 opacity-30 top-[56%] left-[15%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-13 opacity-25 top-[60%] left-[80%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-8 opacity-20 top-[64%] left-[35%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-10 opacity-30 top-[70%] left-[55%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-9 opacity-15 top-[74%] left-[5%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-12 opacity-20 top-[78%] left-[90%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-7 opacity-25 top-[82%] left-[40%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-11 opacity-15 top-[86%] left-[70%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-6 opacity-30 top-[90%] left-[20%]" alt="gem">
+        <img src="/public/assets/svg/gem.png" class="absolute w-13 opacity-20 top-[95%] left-[60%]" alt="gem">
+    </div>
     <div id="app" class="w-full h-full">
         <div class="min-h-[60px] w-full bg-[#1d2225] flex justify-center items-center px-2 py-2">
             <img onclick="window.location='/'" class="w-10 h-10 md:w-14 md:h-14 cursor-pointer" src="/assets/svg/house.svg" alt="house image">
         </div>
-        <div class="flex justify-center mt-10 w-full h-[80vh]">
-            <div class="flex flex-col items-center w-4/5 h-full">
-                <p class="text-3xl mb-6 text-white">Register</p>
-                <p id="status-text" class="text-xl text-green-400 mb-12">Everything looks fine!</p>
-                <form id="register-form" class="flex flex-col items-center w-full max-w-sm bg-gray-500 p-6 rounded-2xl">
-                    <label for="register-username" class="mb-2 w-full text-left">Username</label>
-                    <input id="register-username" name="username" type="text" class="mb-4 px-3 py-2 w-full rounded border border-gray-400" required>
-                    <label for="register-email" class="mb-2 w-full text-left">Email</label>
-                    <input id="register-email" name="email" type="email" class="mb-4 px-3 py-2 w-full rounded border border-gray-400" required>
-                    <label for="register-password" class="mb-2 w-full text-left">Password</label>
-                    <input id="register-password" name="password" type="password" class="mb-4 px-3 py-2 w-full rounded border border-gray-400" required>
-                    <label for="register-confirm-password" class="mb-2 w-full text-left">Confirm Password</label>
-                    <input id="register-confirm-password" name="confirm-password" type="password" class="mb-6 px-3 py-2 w-full rounded border border-gray-400" required>
-                    <button id="register-submit" type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-green-700">Register</button>
+        <div class="flex justify-center  w-full h-[80vh] mt-25">
+            <div class="flex flex-col items-center w-4/5 h-full ">
+                <form id="register-form" class="flex flex-col items-center w-full max-w-sm bg-[#15172b] p-6 rounded-2xl">
+                    <p class="text-3xl  text-[#eee] font-sans-serif size-9 font-extrabold mr-70">Register</p>
+                    <p class=" text-[#eee] mb-7 mr-48 m">Lets get started !</p>
+                    <input id="register-username" name="username" placeholder="Username" type="text" class="bg-[#303245] mb-4 px-3 py-2 w-full rounded-2xl  placeholder-[#808080] text-[#b366ff]  " required>
+                    <input id="register-email" name="email" placeholder="Email" type="email" class="bg-[#303245] mb-4 px-3 py-2 w-full rounded-2xl  placeholder-[#808080] text-[#b366ff] " required>
+                    <input id="register-password" name="password" placeholder="Password" type="password" class="bg-[#303245] mb-4 px-3 py-2 w-full rounded-2xl  placeholder-[#808080] text-[#b366ff]" required>
+                    <input id="register-confirm-password" name="confirm-password" placeholder="Confirm Password" type="password" class="bg-[#303245] mb-6 px-3 py-2 w-full rounded-2xl  placeholder-[#808080] text-[#b366ff]" required>
+                    <button id="register-submit" type="submit" class="bg-[#b366ff] text-white px-4 py-2 rounded-2xl w-full hover:bg-[#72499b]">Register</button>
                 </form>
             </div>
         </div>
