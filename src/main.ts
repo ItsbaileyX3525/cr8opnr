@@ -134,7 +134,7 @@ function startContinuousScrolling(): void {
       requestAnimationFrame(scroll)
     }
     textcontainer.style.position = "absolute"
-    textcontainer.style.marginTop = "-40px"
+    textcontainer.style.marginTop = "-25px"
     textcontainer.style.transform = "translateY(-50%)"
     scroll()
   }
@@ -147,3 +147,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Why does this affect other statements when the previous statement doesnt end in a ;?
 //(()=>{(()=>{(()=>{console.log("This works lol")})();})();})();
+
