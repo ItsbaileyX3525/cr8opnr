@@ -150,6 +150,13 @@ function startcontinuouslist(): void {
         setTimeout(() => oldest.remove(), 400)
       }
     }
+<<<<<<< HEAD
+=======
+    textcontainer.style.position = "absolute"
+    textcontainer.style.marginTop = "-25px"
+    textcontainer.style.transform = "translateY(-50%)"
+    scroll()
+>>>>>>> f06965c4a2438e8a83387882cd289df479398b52
   }
 
   setInterval(addwinner, 3000)
@@ -161,3 +168,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Why does this affect other statements when the previous statement doesnt end in a ;?
 //(()=>{(()=>{(()=>{console.log("This works lol")})();})();})();
+

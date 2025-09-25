@@ -30,24 +30,33 @@
                 <p class="mt-8 text-3xl">
                     Profile settings
                 </p>
-                <img class="w-2/5 h-3/5 mt-5" src="/assets/working hardly or hardly working.png" alt="Under contruction image">
-                <p class="text-2xl mt-12">
-                    Section under contruction
-                </p>
+                <div class="self-start mt-12 ml-4 text-xl">
+                    <label for="change-name">Change username: </label><br>
+                    <input id="new-user" type="text" name="change-name" class="bg-gray-700 rounded-xl translate-y-1" placeholder="New username">
+                    <input id="curr-pwd-usr" type="password" class="bg-gray-700 rounded-xl translate-y-1" placeholder="Password">
+                    <input id="submit-username" type="submit" value="SUBMIT" class="cursor-pointer bg-blue-500 rounded-xl ml-2 translate-y-1 px-2 py-1">
+                    <label id="username-changed-status" for="" class="ml-4 text-green-500 hidden">Username changed!</label>
+                </div>
+                <div class="self-start mt-12 ml-4 text-xl">
+                    <label for="current-pass">Change Password: </label><br>
+                    <input id="curr-password" type="text" name="current-pass" class="bg-gray-700 rounded-xl translate-y-1" placeholder="Current password">
+                    <input id="new-password" type="password" class="bg-gray-700 rounded-xl translate-y-1" placeholder="New Password">
+                    <input id="submit-password" type="submit" value="SUBMIT" class="cursor-pointer bg-blue-500 rounded-xl ml-2 translate-y-1 px-2 py-1">
+                    <label id="password-changed-status" for="" class="ml-4 text-green-500 hidden">Username changed!</label>
+
+                </div>   
+
             </div>
             <div id="account-section" class="hidden flex-col items-center flex-1"> <!-- Account section -->
                 <p class="mt-8 text-3xl">
                     Account settings
-                </p>
-                <img class="w-2/5 h-3/5 mt-5" src="/assets/working hardly or hardly working.png" alt="Under contruction image">
-                <p class="text-2xl mt-12">
-                    Section under contruction
                 </p>
             </div>
             <div id="privacy-section" class="hidden flex-col flex-1 items-center bg-gray-600"> <!-- Privacy section -->
                 <p class="text-2xl">
                     Privacy policy
                 </p>
+                <iframe class="w-full h-full" src="/privacypolicy.html" frameborder="0"></iframe>
             </div>
         </div>
     </div>
