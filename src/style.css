@@ -23,7 +23,11 @@
         100% { transform: translate(calc(var(--tx)*1.08), calc(var(--ty)*1.08)) scale(0.8); opacity: 0; }
       }
       .gem {
-        @apply absolute w-6 h-6 opacity-0 pointer-events-none;
+        position: absolute;
+        width: 1.5rem;
+        height: 1.5rem;
+        opacity: 0;
+        pointer-events: none;
         transform: scale(0);
       }
 
@@ -52,3 +56,306 @@
       .btn:hover .gem {
         animation: spew 900ms cubic-bezier(.16,.9,.31,1) forwards;
       }
+
+
+.mines-body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Poppins', system-ui, sans-serif;
+  background: linear-gradient(180deg, #1b1c1f 0%, #0f1012 100%);
+  color: #f7f8fa;
+}
+
+.mines-backdrop {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(26, 27, 31, 0.72), rgba(18, 20, 28, 0.82));
+}
+
+.mines-container {
+  width: min(880px, 100%);
+}
+
+.mines-panel {
+  background: rgba(35, 38, 49, 0.92);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  box-shadow: 0 20px 45px rgba(6, 10, 22, 0.58);
+  border: 1px solid rgba(124, 106, 255, 0.22);
+}
+
+.mines-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.mines-eyebrow {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgba(198, 205, 255, 0.56);
+  margin-bottom: 0.35rem;
+}
+
+.mines-header h2 {
+  font-size: clamp(2.25rem, 5vw, 3rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f1f5ff;
+}
+
+.mines-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.mines-meta .label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(198, 205, 255, 0.7);
+  margin-bottom: 0.25rem;
+}
+
+.mines-meta .value {
+  font-family: 'BitcountGridDouble', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: 0.95rem;
+  color: #89a1ff;
+  word-break: break-all;
+}
+
+.mines-meta .value.positive {
+  color: #7ff1bd;
+}
+
+.mines-meta .value.negative {
+  color: #ff9aa7;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 1.75rem 0 1.5rem;
+}
+
+.control-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.bet-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 220px;
+}
+
+.bet-input {
+  display: flex;
+  align-items: center;
+  background: rgba(36, 45, 73, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  padding: 0.6rem 0.9rem;
+  gap: 0.65rem;
+}
+
+.bet-input input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #f5f7ff;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.bet-input input:focus {
+  outline: none;
+}
+
+.bet-input .suffix {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(198, 205, 255, 0.7);
+}
+
+.btn {
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  background: rgba(82, 110, 255, 0.85);
+  color: #fff;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(82, 110, 255, 0.35);
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #6274ff, #4b8bff);
+}
+
+.btn.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f5f7ff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.btn.secondary:not(:disabled):hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.btn.accent {
+  background: linear-gradient(135deg, #ff8a5c, #ff5470);
+  color: #fff7f6;
+}
+
+.btn.accent:not(:disabled):hover {
+  box-shadow: 0 12px 22px rgba(255, 118, 132, 0.35);
+}
+
+.mines-message {
+  min-height: 48px;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+  margin-top: 1.25rem;
+}
+
+.mines-message.show {
+  display: flex;
+}
+
+.mines-message.info {
+  background: rgba(76, 110, 255, 0.18);
+  color: #c8d5ff;
+  border: 1px solid rgba(120, 150, 255, 0.25);
+}
+
+.mines-message.success {
+  background: rgba(58, 182, 104, 0.2);
+  color: #c1ffdb;
+  border: 1px solid rgba(58, 182, 104, 0.35);
+}
+
+.mines-message.error {
+  background: rgba(255, 99, 132, 0.18);
+  color: #ffd2db;
+  border: 1px solid rgba(255, 99, 132, 0.35);
+}
+
+.board {
+  display: grid;
+  gap: 0.65rem;
+  justify-content: center;
+  background: rgba(13, 18, 30, 0.75);
+  border-radius: 18px;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 22px rgba(6, 10, 18, 0.6);
+  min-height: 200px;
+  grid-template-columns: repeat(var(--columns, 5), clamp(44px, 8vw, 56px));
+}
+
+.board .tile {
+  width: clamp(44px, 8vw, 56px);
+  height: clamp(44px, 8vw, 56px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(33, 43, 75, 0.8);
+  color: #f5f7ff;
+  font-size: 1.1rem;
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board .tile:hover:not(:disabled) {
+  transform: translateY(-3px);
+  background: rgba(82, 110, 255, 0.45);
+  border-color: rgba(82, 110, 255, 0.65);
+}
+
+.board .tile.is-hidden {
+  background: rgba(52, 66, 110, 0.55);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.board .tile.is-safe {
+  background: rgba(88, 206, 145, 0.25);
+  color: #7ff1bd;
+  border-color: rgba(88, 206, 145, 0.5);
+}
+
+.board .tile.is-mine {
+  background: rgba(255, 99, 132, 0.35);
+  border-color: rgba(255, 99, 132, 0.55);
+}
+
+.board .tile:disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+
+.mines-footer {
+  margin-top: 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.server-seed {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: rgba(198, 205, 255, 0.8);
+  word-break: break-all;
+  min-height: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .mines-panel {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .controls {
+    gap: 1rem;
+  }
+
+  .control-buttons {
+    flex-direction: column;
+  }
+
+  .control-buttons .btn {
+    flex: 1 1 100%;
+  }
+
+  .board {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+}

@@ -9,8 +9,8 @@ let myUserData: userObeject
 
 //Setup dom content shit
 const gemCounter = document.getElementById('gem-balance') as HTMLParagraphElement;
-const signinButton = document.getElementById('signin-button') as HTMLParagraphElement;
-const registerButton = document.getElementById('register-button') as HTMLParagraphElement;
+const signinContainer = document.getElementById('signin-container') as HTMLParagraphElement;
+const registerContainer = document.getElementById('register-container') as HTMLParagraphElement;
 const signoutContainer = document.getElementById('signout-container') as HTMLParagraphElement;
 const usernameText = document.getElementById('username-text') as HTMLParagraphElement;
 const signoutButton = document.getElementById('signout-button') as HTMLParagraphElement;
@@ -48,8 +48,8 @@ async function loadWebsite(): Promise<void> {
     }
     gemCounter.innerText = String(myUserData.gems)
     usernameText.innerText = String(myUserData.username)
-    signinButton.classList.add('hidden');
-    registerButton.classList.add('hidden');
+    signinContainer.classList.add('hidden');
+    registerContainer.classList.add('hidden');
     signoutContainer.classList.remove('hidden');
 }
 

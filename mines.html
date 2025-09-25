@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mines</title>
+  <link href="/src/style.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="mines-body min-h-screen w-full text-[#f7f8fa] font-poppins bg-gradient-to-b from-[#1b1c1f] to-[#0f1012]">
+  <div id="app" class="flex flex-col min-h-screen w-full">
+    <header class="w-full bg-[#1d2225] flex items-center justify-between px-4 py-3 shadow-lg">
+      <div class="flex items-center gap-3">
+        <img onclick="window.location='/'" class="w-10 h-10 md:w-12 md:h-12 cursor-pointer" src="/assets/svg/house.svg" alt="home">
+        <h1 class="text-2xl md:text-3xl font-extrabold drop-shadow-md tracking-wide">CR8OPNR Mines</h1>
+      </div>
+      <div class="flex items-center space-x-4 text-lg md:text-2xl relative">
+        <div class="flex bg-[#303030] rounded-2xl px-3 py-1 shadow-inner items-center ring-1 ring-purple-500/30">
+          <img class="w-6 h-6 md:w-8 md:h-8 mb-0.5" src="/assets/svg/gem.png" alt="gems">
+          <p id="gem-balance" class="ml-3 text-white font-semibold drop-shadow-sm">0</p>
+        </div>
+        <img id="profile-container" class="ml-2 md:ml-4 rounded-full w-10 h-10 md:w-12 md:h-12 cursor-pointer shadow-lg ring-2 ring-purple-400/40" src="/assets/svg/default.png" alt="profile image">
+        <div id="profile-dropdown" class="hidden absolute right-0 top-[65px] bg-green-500 rounded-xl px-3 py-2 select-none shadow-2xl">
+          <p id="username-text" class="font-extrabold text-[20px]">Not logged in</p>
+          <p id="settings-button" class="border-white border-t-2 cursor-pointer font-extrabold flex justify-center">Settings</p>
+          <p id="signin-button" class="border-white border-t-2 cursor-pointer font-extrabold flex justify-center">Sign in</p>
+          <p id="register-button" class="border-white border-t-2 cursor-pointer font-extrabold flex justify-center">Register</p>
+          <p id="signout-button" class="border-white border-t-2 cursor-pointer font-extrabold hidden justify-center">Sign out</p>
+        </div>
+      </div>
+    </header>
+    <main class="flex-1 w-full overflow-y-auto">
+      <div class="mines-backdrop flex justify-center items-start py-10 px-4">
+        <section class="mines-container">
+          <div class="mines-panel">
+            <header class="mines-header">
+              <div>
+                <p class="mines-eyebrow">Provably Fair</p>
+                <h2>Mines</h2>
+              </div>
+              <div class="mines-meta">
+                <div>
+                  <span class="label">Commit</span>
+                  <span id="commit" class="value"></span>
+                </div>
+                <div>
+                  <span class="label">Client Seed</span>
+                  <span id="client-seed" class="value"></span>
+                </div>
+                <div>
+                  <span class="label">Nonce</span>
+                  <span id="nonce" class="value">-</span>
+                </div>
+                <div>
+                  <span class="label">Balance</span>
+                  <span id="balance" class="value">--</span>
+                </div>
+                <div>
+                  <span class="label">Potential</span>
+                  <span id="potential" class="value">0</span>
+                </div>
+                <div>
+                  <span class="label">Earnings</span>
+                  <span id="earnings" class="value">0</span>
+                </div>
+              </div>
+            </header>
+
+            <div id="message" class="mines-message" role="status" aria-live="polite"></div>
+
+            <div class="controls">
+              <div class="bet-group">
+                <label for="bet" class="label">Bet</label>
+                <div class="bet-input">
+                  <input id="bet" type="number" min="1" step="1" value="10" />
+                  <span class="suffix">gems</span>
+                </div>
+              </div>
+              <div class="control-buttons">
+                <button id="start" class="btn primary">Start Game</button>
+                <button id="cashout" class="btn accent" disabled>Cash Out</button>
+                <button id="reveal" class="btn secondary" disabled>Reveal Server Seed</button>
+              </div>
+            </div>
+
+            <div id="board" class="board"></div>
+
+            <footer class="mines-footer">
+              <span class="label">Server Seed</span>
+              <div id="server-seed" class="server-seed"></div>
+            </footer>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+  <script type="module" src="/src/loadIndex.ts"></script>
+  <script type="module" src="/src/mines.ts"></script>
+</body>
+</html>

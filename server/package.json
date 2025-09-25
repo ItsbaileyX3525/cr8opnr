@@ -10,9 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
-    "mariadb": "^3.4.5"
+    "mariadb": "^3.4.5",
+    "uuid": "13.0.0"
   }
 }
