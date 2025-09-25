@@ -1,5 +1,6 @@
 const form = document.getElementById("register-form") as HTMLFormElement;
 const statusText = document.getElementById("status-text") as HTMLParagraphElement;
+const submitButton = document.getElementById('register-submit') as HTMLButtonElement;
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -38,6 +39,7 @@ form.addEventListener("submit", async (e) => {
             statusText.classList.add("text-green-300")
             statusText.classList.remove("text-red-500")
             statusText.innerText = "Account created successfully!"
+            submitButton.disabled = true;
             setTimeout(() => {
                 window.location.href = "/"
             }, 1500);

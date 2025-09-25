@@ -14,7 +14,6 @@
       <p class="text-2xl md:text-3xl font-extrabold drop-shadow-md">
         CR8OPNR
       </p>
-      <img class="w-10 h-10 md:w-14 md:h-14" src="/assets/svg/house.svg" alt="house image">
       <div class="flex items-center space-x-4 text-lg md:text-2xl relative">
         <div class="flex bg-[#303030] rounded-2xl px-3 py-1 shadow-inner items-center ring-1 ring-purple-500/30">
           <img class="w-6 h-6 md:w-8 md:h-8 mb-0.5" src="/assets/svg/gem.png" alt="">
@@ -22,10 +21,11 @@
         </div>
         <img id="profile-container" class="ml-2 md:ml-4 rounded-full w-10 h-10 md:w-12 md:h-12 cursor-pointer shadow-lg ring-2 ring-purple-400/40" src="/assets/svg/default.png" alt="profile image">
         <div id="profile-dropdown" class="hidden absolute right-0 top-[65px] bg-green-500 rounded-xl px-3 py-2 select-none shadow-2xl">
-          <p class="font-extrabold">Not logged in</p>
+          <p id="username-text" class="font-extrabold text-[20px]">Not logged in</p>
           <p id="settings-button" class="border-white border-t-2 cursor-pointer font-extrabold flex justify-center">Settings</p>
           <p id="signin-button" class="border-white border-t-2 cursor-pointer font-extrabold flex justify-center">Sign in</p>
           <p id="register-button" class="border-white border-t-2 cursor-pointer font-extrabold flex justify-center">Register</p>
+          <p id="signout-button" class="border-white border-t-2 cursor-pointer font-extrabold hidden justify-center">Sign out</p>
         </div>
       </div>
     </div>
@@ -93,118 +93,5 @@
   </div>
 </body>
 <script type="module" src="/src/main.ts"></script>
-<script type="module" src="/src/loadData.ts"></script>
-<script>
-const prizes = [
-  "won a Steam gift card!",
-  "won a Steam key!",
-  "won 2 Steam keys!",
-  "won 3 Steam keys!",
-  "won 5 Steam keys!",
-  "won a mystery Steam key!",
-  "won a random Steam bundle!",
-  "won a Steam wallet code!",
-  "won an exclusive Steam game drop!",
-  "won a surprise Steam code pack!",
-  "won 50 gems!",
-  "won 100 gems!",
-  "won 150 gems!",
-  "won 200 gems!",
-  "won 250 gems!",
-  "won 300 gems!",
-  "won 400 gems!",
-  "won 500 gems!",
-  "won 600 gems!",
-  "won 750 gems!",
-  "won 800 gems!",
-  "won 900 gems!",
-  "won 1000 gems!",
-  "won 1200 gems!",
-  "won 1500 gems!",
-  "won 2000 gems!",
-  "won 2500 gems!",
-  "won a jackpot of 5000 gems!",
-  "won a mega 10000 gems prize!",
-  "won a free case!",
-  "won 2 free cases!",
-  "won 3 free cases!",
-  "won a discounted case!",
-  "won a premium case!",
-  "won a golden case!",
-  "won an exclusive case bundle!",
-  "won a surprise bonus case!",
-  "won a rare free case drop!",
-  "won a mystery case pack!"
-];
-const names = [
-  "Alice", "Bob", "Charlie", "Diana", "Eve", "Frank", "Grace", "Hank", "Ivy", "Jack",
-  "Karen", "Leo", "Mona", "Nina", "Oscar", "Paul", "Quinn", "Rita", "Steve", "Tina",
-  "Uma", "Victor", "Wendy", "Xander", "Yara", "Zane",
-  "Aaron", "Abby", "Adrian", "Aiden", "Alex", "Alexa", "Amelia", "Andre", "Angela", "Anthony",
-  "Bella", "Ben", "Bianca", "Blake", "Brandon", "Brianna", "Brooke", "Bruce", "Bryan", "Caleb",
-  "Cameron", "Cara", "Carla", "Carter", "Cathy", "Chloe", "Chris", "Clara", "Cole", "Colin",
-  "Daniel", "Derek", "Destiny", "Diego", "Donna", "Dylan", "Edward", "Elena", "Elijah", "Ella",
-  "Emily", "Eric", "Ethan", "Fiona", "Finn", "Gabby", "Gabe", "Gavin", "George", "Gina",
-  "Hailey", "Harper", "Harry", "Hazel", "Henry", "Hope", "Hunter", "Iris", "Isabel", "Ivan",
-  "Jade", "James", "Jamie", "Jasmine", "Jason", "Jenna", "Jennifer", "Jeremy", "Jessica", "Joel",
-  "Jordan", "Jose", "Joseph", "Joy", "Julia", "Justin", "Kara", "Kate", "Katherine", "Kayla",
-  "Kelly", "Kevin", "Kim", "Kyle", "Lara", "Laura", "Lauren", "Liam", "Lily", "Logan",
-  "Louis", "Lucas", "Lucy", "Luis", "Luke", "Maddie", "Madison", "Marcus", "Maria", "Mark",
-  "Mason", "Matthew", "Maya", "Megan", "Melissa", "Michael", "Michelle", "Miles", "Naomi", "Natalie",
-  "Nathan", "Nicole", "Noah", "Olivia", "Owen", "Pam", "Patricia", "Patrick", "Peter", "Peyton",
-  "Phoebe", "Rachel", "Ray", "Rebecca", "Richard", "Robert", "Rose", "Ruby", "Ryan", "Samantha",
-  "Samuel", "Sandra", "Sara", "Sarah", "Scott", "Sean", "Sebastian", "Seth", "Sophia", "Spencer",
-  "Stella", "Summer", "Susan", "Sydney", "Taylor", "Thomas", "Travis", "Trinity", "Tyler", "Valerie",
-  "Vanessa", "Veronica", "Vince", "Violet", "Vivian", "Walter", "Will", "William", "Willow", "Wyatt",
-  "Zach", "Zara", "Zeke", "Zoey"
-];
-function censorname(name) {
-  return name.slice(0, 2) + "*****"
-}
-
-function generatewinner() {
-  const randomname = names[Math.floor(Math.random() * names.length)]
-  const censoredname = censorname(randomname)
-  const randomprize = prizes[Math.floor(Math.random() * prizes.length)]
-  return `${censoredname} ${randomprize}`
-}
-
-function populatescrollingtext() {
-  const textcontainer = document.getElementById("random-winner-text")
-  if (textcontainer) {
-    textcontainer.innerHTML = ""
-    for (let i = 0; i < 15; i++) {
-      const winner = document.createElement("span")
-      winner.textContent = generatewinner()
-      winner.className = "px-6"
-      textcontainer.appendChild(winner)
-    }
-  }
-}
-
-function startcontinuousscrolling() {
-  const textcontainer = document.getElementById("random-winner-text")
-  const banner = document.getElementById("random-winner-banner")
-  if (textcontainer && banner) {
-    let position = banner.offsetWidth
-    function scroll() {
-      position -= 1
-      if (position <= -textcontainer.offsetWidth) {
-        position = banner.offsetWidth
-      }
-      textcontainer.style.transform = `translateX(${position}px)`
-      requestAnimationFrame(scroll)
-    }
-    textcontainer.style.position = "absolute"
-    textcontainer.style.marginTop = "-40px"
-    textcontainer.style.transform = "translateY(-50%)"
-    scroll()
-  }
-}
-
-window.addEventListener("load", () => {
-  populatescrollingtext()
-  startcontinuousscrolling()
-})
-</script>
+<script type="module" src="/src/loadIndex.ts"></script>
 </html>

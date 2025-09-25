@@ -6,16 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
 </head>
-<body class="w-full h-full bg-gray-600">
+<body class="w-full h-full bg-gray-700">
     <div id="app" class="w-full h-full">
         <div class="min-h-[60px] w-full bg-[#1d2225] flex justify-center items-center px-2 py-2">
             <img onclick="window.location='/'" class="w-10 h-10 md:w-14 md:h-14 cursor-pointer" src="/assets/svg/house.svg" alt="house image">
         </div>
         <div class="flex justify-center mt-10 w-full h-[80vh]">
             <div class="flex flex-col items-center w-4/5 h-full">
-                <p class="text-3xl mb-6">Register</p>
-                <p id="status-text" class="text-xl text-green-400">Everything looks fine!</p>
-                <form id="register-form" class="flex flex-col items-center w-full max-w-sm">
+                <p class="text-3xl mb-6 text-white">Register</p>
+                <p id="status-text" class="text-xl text-green-400 mb-12">Everything looks fine!</p>
+                <form id="register-form" class="flex flex-col items-center w-full max-w-sm bg-gray-500 p-6 rounded-2xl">
                     <label for="register-username" class="mb-2 w-full text-left">Username</label>
                     <input id="register-username" name="username" type="text" class="mb-4 px-3 py-2 w-full rounded border border-gray-400" required>
                     <label for="register-email" class="mb-2 w-full text-left">Email</label>

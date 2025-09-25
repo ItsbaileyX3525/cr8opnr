@@ -1,17 +1,21 @@
 import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
+import { readdirSync } from 'fs'
+import { resolve } from 'path'
 
 export default defineConfig({
 	base: '/',
 	plugins: [tailwindcss()],
 	build: {
 		rollupOptions: {
-			input: {
-				main: './index.html',
-				register: './register.html',
-        		login: './login.html',
-				notfound: './404.html'
-			}
+			input: Object.fromEntries(
+				readdirSync('.')
+					.filter(file => file.endsWith('.html'))
+					.map(file => [
+						file.replace('.html', ''),
+						resolve(__dirname, file)
+					])
+			)
 		},
 		sourcemap: true,
 	}

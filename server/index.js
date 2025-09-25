@@ -32,16 +32,25 @@ app.use(session({
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../dist")));
 
-app.get("/:page", (req, res, next) => {
-    const filePath = path.join(__dirname, "../dist", req.params.page + ".html");
-    res.sendFile(filePath, err => {
-        if (err) {
-            res.sendFile(path.join(__dirname, "../dist/404.html"), err => {
-                if (err) next();
-            });
-        };
-    });
-});
+async function getUserInfo(userId) {
+    let conn;
+    try {
+        conn = await pool.getConnection();
+        const rows = await conn.query(
+            "SELECT gems, username, email FROM users WHERE id = ?",
+            [userId]
+        );
+        if (!rows || rows.length === 0) {
+            return null;
+        }
+        return rows[0];
+    } catch (err) {
+        console.log("Error:", err);
+        throw err;
+    } finally {
+        if (conn) conn.release();
+    }
+}
 
 function requireLogin(req, res, next) {
     if (!req.session.userId) {
@@ -58,35 +67,45 @@ function requireOwner(req, res, next) {
     next();
 }
 
-app.get("/api/user/:id", requireLogin, requireOwner, async (req, res) => {
-    let conn;
+app.get("/settings", requireLogin, async (req, res) => {
     try {
-        conn = await pool.getConnection();
-        const rows = await conn.query(
-            "SELECT gems FROM users WHERE id = ?",
-            [req.params.id]
-        );
-        if (!rows || rows.length === 0) {
-            return res.status(404).json({ success: false, message: "User not found" });
+        const user = await getUserInfo(req.session.userId);
+        if (!user) {
+            res.sendFile(path.join(__dirname, "../dist/settings_nocred.html"), err => {
+                if (err) console.log(err)
+            })
+            return
         }
-        res.status(200).json({ success: true, user: rows[0] });
+        res.sendFile(path.join(__dirname, "../dist/settings_cred.html"), err => {
+            if (err) console.log(err)
+        })
     } catch (err) {
-        console.log("Error:", err);
-        res.status(500).json({ success: false, error: "Internal server error" });
-    } finally {
-        if (conn) conn.release();
+        console.log(err)
     }
+})
+
+app.get("/:page", (req, res, next) => {
+    const filePath = path.join(__dirname, "../dist", req.params.page + ".html");
+    res.sendFile(filePath, err => {
+        if (err) {
+            res.sendFile(path.join(__dirname, "../dist/404.html"), err => {
+                if (err) next();
+            });
+        };
+    });
 });
 
-app.get("/signout", (req, res) => {
-    if(!req.session.userId) {
-        return res.status(401).json({ success: false, message: "Not logged in!" });
+app.get("/api/user/:id", requireLogin, requireOwner, async (req, res) => {
+    try {
+        const user = await getUserInfo(req.params.id);
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+        res.status(200).json({ success: true, user: user });
+    } catch (err) {
+        res.status(500).json({ success: false, error: "Internal server error" });
     }
-
-    req.session.userId = null //Think this works
-
-    res.status(200).json({ success: true, message: "Logged out!"})
-})
+});
 
 app.get("/api/me", (req, res) => {
     if (!req.session.userId) {
@@ -193,11 +212,11 @@ app.get("/api/profile", (req, res) => {
     res.status(200).json({ success: true, userId: req.session.userId });
 });
 
-app.post("/api/logout", (req, res) => {
+app.get("/api/logout", (req, res) => {
     req.session.destroy(err => {
         if (err) return res.status(500).json({ success: false, message: "Error logging out" });
         res.clearCookie('connect.sid');
-        res.status(200).json({ success: true });
+        res.redirect("/");
     });
 });
 

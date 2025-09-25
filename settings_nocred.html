@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" class="h-screen w-screen">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/style.css">
+    <title>Account Settings</title>
+</head>
+<body class="w-full h-full bg-gradient-to-b from-[#1b1c1f] to-[#0f1012]">
+<div id="app" class="flex flex-col w-full h-full">
+    <div class="min-h-[60px] w-full bg-[#1d2225] flex justify-center items-center px-2 py-2">
+        <img onclick="window.location='/'" class="w-10 h-10 md:w-14 md:h-14 cursor-pointer" src="/assets/svg/house.svg" alt="house image">
+    </div>
+    <div class="flex flex-col items-center flex-1">
+        <p class="text-2xl mt-4 text-white">
+            You are not logged in!
+        </p>
+        <div onclick="window.location.href='login'" class="m-auto px-3 py-4 bg-green-400 rounded-xl cursor-pointer hover:-translate-y-0.5 active:translate-y-1.5">
+            <p class="text-white text-3xl">
+                Login now
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

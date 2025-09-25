@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="h-screen w-screen">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/style.css">
+    <title>Account Settings</title>
+</head>
+<body class="w-full h-full bg-gradient-to-b from-[#1b1c1f] to-[#0f1012]">
+<div id="app" class="flex flex-col w-full h-full">
+    <div class="min-h-[60px] w-full bg-[#1d2225] flex justify-center items-center px-2 py-2">
+        <img onclick="window.location='/'" class="w-10 h-10 md:w-14 md:h-14 cursor-pointer" src="/assets/svg/house.svg" alt="house image">
+    </div>
+    <div class="flex flex-1">
+        <div class="text-xl text-white border-black flex gap-5 flex-col items-center justify-center bg-gray-500 w-1/5"> <!-- Left -->
+            <p id="profile-button" class="cursor-pointer text-gray-400">
+                Profile
+            </p>
+            <div class="w-full bg-black h-0.5"></div>
+            <p id="account-button" class="cursor-pointer">
+                Account
+            </p>
+            <div class="w-full bg-black h-0.5"></div>
+            <p id="privacy-button" class="cursor-pointer">
+                Privacy policy
+            </p>
+        </div>
+        <div class="flex flex-2 text-white"> <!-- Right -->
+            <div id="profile-section" class="flex flex-col items-center flex-1"> <!-- Profile section -->
+                <p class="mt-8 text-3xl">
+                    Profile settings
+                </p>
+                <img class="w-2/5 h-3/5 mt-5" src="/assets/working hardly or hardly working.png" alt="Under contruction image">
+                <p class="text-2xl mt-12">
+                    Section under contruction
+                </p>
+            </div>
+            <div id="account-section" class="hidden flex-col items-center flex-1"> <!-- Account section -->
+                <p class="mt-8 text-3xl">
+                    Account settings
+                </p>
+                <img class="w-2/5 h-3/5 mt-5" src="/assets/working hardly or hardly working.png" alt="Under contruction image">
+                <p class="text-2xl mt-12">
+                    Section under contruction
+                </p>
+            </div>
+            <div id="privacy-section" class="hidden flex-col flex-1 items-center bg-gray-600"> <!-- Privacy section -->
+                <p class="text-2xl">
+                    Privacy policy
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="module" src="src/loadSettings.ts"></script>
+</html>
