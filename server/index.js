@@ -67,7 +67,7 @@ function requireOwner(req, res, next) {
     next();
 }
 
-app.get("/settings", requireLogin, async (req, res) => {
+app.get("/settings", async (req, res) => {
     try {
         const user = await getUserInfo(req.session.userId);
         if (!user) {
@@ -114,6 +114,91 @@ app.get("/api/me", (req, res) => {
     res.json({ success: true, userId: req.session.userId, role: req.session.role });
 })
 
+app.post("/api/changeusename", async (req, res) => {
+    const { username, password } = req.body
+    const userid = req.session.userId
+
+    let conn
+    try {
+        conn = await pool.getConnection();
+
+        const rows = await conn.query(
+            "SELECT username, password FROM users WHERE id = ?",
+            [userid]
+        );
+
+        if (!rows || rows.length === 0) {
+            return res.status(200).json({ success: false, message: "Failed to retrieve your username" });
+        }
+
+        const storedHash = rows[0].password;
+        const match = await bcrypt.compare(password, storedHash);
+
+        if (!match) {
+            res.status(200).json({ succses: false, message: "Incorrect Passowrd!" });
+            return;
+        }
+
+        await conn.query(
+            "UPDATE users SET username = ? WHERE id = ?",
+            [username, userid]
+        );
+
+        res.status(200).json({ success: true, message: "Username changed successfully!" });
+    } catch (err) {
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+})
+
+app.post("/api/changepassword", async (req, res) => {
+    const { currPassword, newPassword } = req.body
+    const userid = req.session.userId
+
+    let conn
+    try {
+        conn = await pool.getConnection();
+
+        const rows = await conn.query(
+            "SELECT password FROM users WHERE id = ?",
+            [userid]
+        );
+
+        if (!rows || rows.length === 0) {
+            return res.status(200).json({ success: false, message: "Failed to retrieve your current password hash" });
+        }
+
+        const storedHash = rows[0].password;
+        const match = await bcrypt.compare(currPassword, storedHash);
+
+        if (!match) {
+            return res.status(200).json({ succses: false, message: "Incorrect Passowrd!" });
+        }
+
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+        if (err) {
+            console.log("Error generating salt:", err);
+            return res.status(500).json({ success: false, error: "Internal server error" });
+        }
+        bcrypt.hash(newPassword, salt, async function(err, hash) {
+            if (err) {
+                console.log("Error hashing password:", err);
+                return res.status(500).json({ success: false, error: "Internal server error" });
+            }
+
+            await conn.query(
+                "UPDATE users SET password = ? WHERE id = ?",
+                [hash, userid]
+            );
+
+            return res.status(200).json({ success: true, message: "Password changed successfully!" });
+
+        })
+    })
+    } catch (err) {
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+})
+
 app.post("/api/login", async (req, res) => {
     const { username, password } = req.body;
 
@@ -127,7 +212,7 @@ app.post("/api/login", async (req, res) => {
         );
 
         if (!rows || rows.length === 0) {
-            return res.status(401).json({ success: false, message: "Invalid username or password" });
+            return res.status(200).json({ success: false, message: "Invalid username or password" });
         }
 
         const storedHash = rows[0].password;
@@ -138,7 +223,7 @@ app.post("/api/login", async (req, res) => {
             req.session.userId = rows[0].id;
             return res.status(200).json({ success: true, userId: req.session.userId });
         } else {
-            return res.status(401).json({ success: false, message: "Invalid username or password" });
+            return res.status(200).json({ success: false, message: "Invalid username or password" });
         }
     } catch (err) {
         console.log("Error:", err);

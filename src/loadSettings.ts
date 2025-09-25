@@ -6,6 +6,11 @@ const profileSection = document.getElementById('profile-section') as HTMLDivElem
 const accountSection = document.getElementById('account-section') as HTMLDivElement;
 const privacySection = document.getElementById('privacy-section') as HTMLDivElement;
 
+const submitNewUsername = document.getElementById('submit-username') as HTMLInputElement;
+const submitNewPassword = document.getElementById('submit-password') as HTMLInputElement;
+const newUsernameStatus = document.getElementById('username-changed-status') as HTMLLabelElement;
+const newPasswordStatus = document.getElementById('password-changed-status') as HTMLLabelElement;
+
 function addHighlight(el: string): void {
     profileButton.classList.remove("text-white");
     accountButton.classList.remove("text-white");
@@ -58,4 +63,82 @@ accountButton.addEventListener('click', () => {
 
 privacyButton.addEventListener('click', () => {
     addHighlight("Privacy")
+})
+
+submitNewPassword.addEventListener('click', async () => {
+    const currPassword = document.getElementById('curr-password') as HTMLInputElement;
+    const newPassword = document.getElementById('new-password') as HTMLInputElement;
+
+    const currPasswordString = currPassword.value
+    const newPasswordString = newPassword.value
+
+    console.log(newPasswordString)
+    console.log(currPasswordString)
+
+	fetch("/api/changepassword", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+            currPassword: currPasswordString,
+            newPassword: newPasswordString
+        })
+	})
+	.then(async response => {
+		if (!response.ok) {
+			return Promise.reject(new Error(`HTTP error! status: ${response.status}`));
+		}
+		const data = await response.json();
+        console.log(data)
+        if (data.success) {
+            newPasswordStatus.classList.add("text-green-500")
+            newPasswordStatus.classList.remove("text-red-500")
+            newPasswordStatus.innerText = "Password changed successfully!"
+            newPasswordStatus.classList.remove("hidden")
+            submitNewPassword.disabled = true;
+        } else {
+            newPasswordStatus.classList.remove("text-green-500")
+            newPasswordStatus.classList.add("text-red-500")
+            newPasswordStatus.innerText = data.message
+        }
+	});
+})
+
+submitNewUsername.addEventListener('click', () => {
+
+    const newUsername = document.getElementById('new-user') as HTMLInputElement;
+    const currPassword = document.getElementById('curr-pwd-usr') as HTMLInputElement;
+
+    const newUsernameString = newUsername.value
+    const currPasswordString = currPassword.value
+
+	fetch("/api/changeusename", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+            username: newUsernameString,
+            password: currPasswordString
+        })
+	})
+	.then(async response => {
+		if (!response.ok) {
+			return Promise.reject(new Error(`HTTP error! status: ${response.status}`));
+		}
+		const data = await response.json();
+        console.log(data)
+        if (data.success) {
+            newUsernameStatus.classList.add("text-green-500")
+            newUsernameStatus.classList.remove("text-red-500")
+            newUsernameStatus.innerText = "Username changed successfully!"
+            newUsernameStatus.classList.remove("hidden")
+            submitNewUsername.disabled = true;
+        } else {
+            newUsernameStatus.classList.remove("text-green-500")
+            newUsernameStatus.classList.add("text-red-500")
+            newUsernameStatus.innerText = data.message
+        }
+	});
 })
