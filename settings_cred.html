@@ -1,66 +1,101 @@
 <!DOCTYPE html>
 <html lang="en" class="h-screen w-screen">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/src/style.css">
-    <title>Account Settings</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/src/style.css">
+  <title>Account Settings</title>
 </head>
 <body class="w-full h-full bg-gradient-to-b from-[#1b1c1f] to-[#0f1012]">
-<div id="app" class="flex flex-col w-full h-full">
+  <!-- Background gems -->
+  <div class="absolute inset-0 z-[-1] overflow-hidden pointer-events-none">
+    <img src="/assets/svg/gem.png" class="absolute w-6 opacity-15 top-[3%] left-[8%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-10 opacity-25 top-[7%] left-[40%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-8 opacity-20 top-[12%] left-[75%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-7 opacity-30 top-[15%] left-[55%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-9 opacity-15 top-[20%] left-[20%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-12 opacity-20 top-[25%] left-[65%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-5 opacity-10 top-[28%] left-[85%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-14 opacity-25 top-[32%] left-[10%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-8 opacity-30 top-[38%] left-[50%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-7 opacity-20 top-[42%] left-[70%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-9 opacity-15 top-[48%] left-[25%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-11 opacity-20 top-[52%] left-[60%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-6 opacity-30 top-[56%] left-[15%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-13 opacity-25 top-[60%] left-[80%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-8 opacity-20 top-[64%] left-[35%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-10 opacity-30 top-[70%] left-[55%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-9 opacity-15 top-[74%] left-[5%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-12 opacity-20 top-[78%] left-[90%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-7 opacity-25 top-[82%] left-[40%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-11 opacity-15 top-[86%] left-[70%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-6 opacity-30 top-[90%] left-[20%]" alt="gem">
+    <img src="/assets/svg/gem.png" class="absolute w-13 opacity-20 top-[95%] left-[60%]" alt="gem">
+  </div>
+
+  <div id="app" class="flex flex-col w-full h-full">
+    <!-- Top navbar -->
     <div class="min-h-[60px] w-full bg-[#1d2225] flex justify-center items-center px-2 py-2">
-        <img onclick="window.location='/'" class="w-10 h-10 md:w-14 md:h-14 cursor-pointer" src="/assets/svg/house.svg" alt="house image">
+      <img onclick="window.location='/'" class="w-10 h-10 md:w-14 md:h-14 cursor-pointer" src="/assets/svg/house.svg" alt="house image">
     </div>
+
+    <!-- Button row -->
+    <div class="flex items-center justify-center gap-6 w-full bg-[#1d2225] py-3">
+        <button id="profile-button" 
+        class="px-6 py-2 rounded-xl text-gray-300 bg-[#15172b] hover:bg-[#23263d] hover:text-white transition-colors duration-200">
+        Profile
+        </button>
+        <button id="account-button" 
+        class="px-6 py-2 rounded-xl text-gray-300 bg-[#15172b] hover:bg-[#23263d] hover:text-white transition-colors duration-200">
+        Account
+        </button>
+        <button id="privacy-button" 
+        class="px-6 py-2 rounded-xl text-gray-300 bg-[#15172b] hover:bg-[#23263d] hover:text-white transition-colors duration-200">
+        Privacy Policy
+        </button>
+  </div>
+
+    <!-- Main content area -->
     <div class="flex flex-1">
-        <div class="text-xl text-white border-black flex gap-5 flex-col items-center justify-center bg-gray-500 w-1/5"> <!-- Left -->
-            <p id="profile-button" class="cursor-pointer text-gray-400">
-                Profile
-            </p>
-            <div class="w-full bg-black h-0.5"></div>
-            <p id="account-button" class="cursor-pointer">
-                Account
-            </p>
-            <div class="w-full bg-black h-0.5"></div>
-            <p id="privacy-button" class="cursor-pointer">
-                Privacy policy
-            </p>
-        </div>
-        <div class="flex flex-2 text-white"> <!-- Right -->
-            <div id="profile-section" class="flex flex-col items-center flex-1"> <!-- Profile section -->
-                <p class="mt-8 text-3xl">
-                    Profile settings
-                </p>
+      <div class="inline-flex flex-1 h-full">
+        <div class="flex flex-2 text-white w-full">
+          
+          <!-- Profile section -->
+          <div id="profile-section" class="flex flex-col items-center flex-1">
+            <div class="bg-[#15172b] rounded-2xl w-100px h-4/5 mt-5 inline-bloc">
+                <div class="self-start mt-12 ml-4 text-xl ">
+                <label  for="change-name" >Change username: </label>
+                <input id="new-user" type="text" name="change-name" class="bg-[#303245] mb-4 px-3 py-2 w-full rounded-2xl  placeholder-[#808080] text-[#b366ff]  " placeholder="New username">
+                <input id="curr-pwd-usr" type="password" class="bg-[#303245] mb-4 px-3 py-2 w-full rounded-2xl  placeholder-[#808080] text-[#b366ff]  " placeholder="Password">
+                <input id="submit-username" type="submit" value="SUBMIT" class="bg-[#b366ff] text-white px-4 py-2 rounded-2xl w-full hover:bg-[#72499b]">
+                <label id="username-changed-status" for="" class="ml-4 text-green-500 hidden">Username changed!</label>
+                </div class="mt-5">
                 <div class="self-start mt-12 ml-4 text-xl">
-                    <label for="change-name">Change username: </label><br>
-                    <input id="new-user" type="text" name="change-name" class="bg-gray-700 rounded-xl translate-y-1" placeholder="New username">
-                    <input id="curr-pwd-usr" type="password" class="bg-gray-700 rounded-xl translate-y-1" placeholder="Password">
-                    <input id="submit-username" type="submit" value="SUBMIT" class="cursor-pointer bg-blue-500 rounded-xl ml-2 translate-y-1 px-2 py-1">
-                    <label id="username-changed-status" for="" class="ml-4 text-green-500 hidden">Username changed!</label>
-                </div>
-                <div class="self-start mt-12 ml-4 text-xl">
-                    <label for="current-pass">Change Password: </label><br>
-                    <input id="curr-password" type="text" name="current-pass" class="bg-gray-700 rounded-xl translate-y-1" placeholder="Current password">
-                    <input id="new-password" type="password" class="bg-gray-700 rounded-xl translate-y-1" placeholder="New Password">
-                    <input id="submit-password" type="submit" value="SUBMIT" class="cursor-pointer bg-blue-500 rounded-xl ml-2 translate-y-1 px-2 py-1">
-                    <label id="password-changed-status" for="" class="ml-4 text-green-500 hidden">Username changed!</label>
+                <label for="current-pass">Change Password: </label>
+                <input id="curr-password" type="text" name="current-pass" class="bg-[#303245] mb-4 px-3 py-2 w-full rounded-2xl  placeholder-[#808080] text-[#b366ff]  " placeholder="Current password">
+                <input id="new-password" type="password" class="bg-[#303245] mb-4 px-3 py-2 w-full rounded-2xl  placeholder-[#808080] text-[#b366ff]  " placeholder="New Password">
+                <input id="submit-password" type="submit" value="SUBMIT" class="bg-[#b366ff] text-white px-4 py-2 rounded-2xl w-full hover:bg-[#72499b]">
+                <label id="password-changed-status" for="" class="ml-4 text-green-500 hidden">Username changed!</label>
+                </div> 
+            </div>
+          </div>
 
-                </div>   
+          <!-- Account section -->
+          <div id="account-section" class="hidden flex-col items-center flex-1">
+            <p class="mt-8 text-3xl">Account settings</p>
+          </div>
 
-            </div>
-            <div id="account-section" class="hidden flex-col items-center flex-1"> <!-- Account section -->
-                <p class="mt-8 text-3xl">
-                    Account settings
-                </p>
-            </div>
-            <div id="privacy-section" class="hidden flex-col flex-1 items-center bg-gray-600"> <!-- Privacy section -->
-                <p class="text-2xl">
-                    Privacy policy
-                </p>
-                <iframe class="w-full h-full" src="/privacypolicy.html" frameborder="0"></iframe>
-            </div>
+          <!-- Privacy section -->
+          <div id="privacy-section" class="hidden flex-col flex-1 items-center ">
+            <p class="text-2xl">Privacy policy</p>
+            <iframe class="w-full h-full" src="/privacypolicy.html" frameborder="0"></iframe>
+          </div>
+
         </div>
+      </div>
     </div>
-</div>
+  </div>
+
+  <script type="module" src="src/loadSettings.ts"></script>
 </body>
-<script type="module" src="src/loadSettings.ts"></script>
 </html>
