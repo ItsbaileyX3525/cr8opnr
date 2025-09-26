@@ -17,19 +17,19 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-      @keyframes spew {
-        0% { transform: translate(0,0) scale(0.2); opacity: 1; }
-        70% { transform: translate(var(--tx), var(--ty)) scale(1.05); opacity: 1; }
-        100% { transform: translate(calc(var(--tx)*1.08), calc(var(--ty)*1.08)) scale(0.8); opacity: 0; }
-      }
-      .gem {
-        position: absolute;
-        width: 1.5rem;
-        height: 1.5rem;
-        opacity: 0;
-        pointer-events: none;
-        transform: scale(0);
-      }
+@keyframes spew {
+  0% { transform: translate(0,0) scale(0.2); opacity: 1; }
+  70% { transform: translate(var(--tx), var(--ty)) scale(1.05); opacity: 1; }
+  100% { transform: translate(calc(var(--tx)*1.08), calc(var(--ty)*1.08)) scale(0.8); opacity: 0; }
+}
+.gem {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0);
+}
 
 .responsive-img {
   max-width: 100%;
@@ -53,10 +53,9 @@
     height: auto;
   }
 }
-      .btn:hover .gem {
-        animation: spew 900ms cubic-bezier(.16,.9,.31,1) forwards;
-      }
-
+.btn:hover .gem {
+  animation: spew 900ms cubic-bezier(.16,.9,.31,1) forwards;
+}
 
 .mines-body {
   min-height: 100vh;
@@ -82,7 +81,7 @@
   box-shadow: 0 20px 45px rgba(6, 10, 22, 0.58);
 }
 
-.mines-header {
+mines-header {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -344,25 +343,72 @@
   min-height: 1.5rem;
 }
 
-@media (max-width: 640px) {
-  .mines-panel {
-    padding: 1.75rem 1.25rem;
-  }
 
-  .controls {
-    gap: 1rem;
-  }
 
-  .control-buttons {
-    flex-direction: column;
-  }
+/* crash message styling */
+.crash-message {
+  min-height: 48px;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  display: none;
+  font-size: 0.9rem;
+  margin-top: 1.25rem;
+}
+.crash-message.show { display: block; }
+.crash-message.info {
+  background: rgba(76, 110, 255, 0.18);
+  color: #c8d5ff;
+  border: 1px solid rgba(120, 150, 255, 0.25);
+}
+.crash-message.success {
+  background: rgba(58, 182, 104, 0.2);
+  color: #c1ffdb;
+  border: 1px solid rgba(58, 182, 104, 0.35);
+}
+.crash-message.error {
+  background: rgba(255, 99, 132, 0.18);
+  color: #ffd2db;
+  border: 1px solid rgba(255, 99, 132, 0.35);
+}
 
-  .control-buttons .btn {
-    flex: 1 1 100%;
-  }
+.chart-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+.line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  clip-path: polygon(0 100%, 10% 85%, 20% 70%, 30% 60%, 40% 40%, 50% 35%, 60% 25%, 70% 20%, 80% 15%, 100% 10%, 100% 100%);
+  transform-origin: bottom left;
+  z-index: 0;
+}
 
-  .board {
-    padding: 1rem;
-    gap: 0.5rem;
-  }
+.running .line {
+  background: linear-gradient(180deg, rgba(179,102,255,0.7), transparent);
+  animation: rise 5s linear infinite;
+}
+
+.crashed .line {
+  background: linear-gradient(180deg, rgba(255,99,132,0.7), transparent);
+  animation-play-state: paused;
+}
+
+.cashout .line {
+  background: linear-gradient(180deg, rgba(99, 255, 104, 0.7), transparent);
+  animation-play-state: paused;
+}
+
+@keyframes rise {
+  from { transform: translateX(0) scaleY(1); }
+  to { transform: translateX(-50%) scaleY(1.05); }
+}
+
+.mines-panel * {
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }

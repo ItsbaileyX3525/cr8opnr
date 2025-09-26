@@ -11,7 +11,7 @@ router.use(requireLogin);
 const rounds = new Map();
 
 const MAX_BET = 1000000;
-const EXP_DIVISOR = 5500;
+const EXP_DIVISOR = 10000;
 
 function createServerSeed() {
 	const serverSeed = crypto.randomBytes(32).toString("hex");
