@@ -65,13 +65,13 @@
       </div>
 
       <!-- MAIN CONTENT: Game Area -->
-      <div class="flex-1 flex flex-col">
+      <div class="flex-1 flex flex-col mb-10">
         <main class="flex-1 w-full overflow-y-auto">
           <div class="mines-backdrop flex justify-center items-start py-10 px-4">
 
             <!-- GAME PANEL: Info + Board -->
             <section class="mines-container">
-              <div class="mines-panel flex flex-row gap-6">
+              <div class="mines-panel flex flex-row gap-2 mt--10">
 
                 <!-- LEFT SIDE: Info + Controls -->
                 <div class="flex flex-col w-1/2 space-y-6">
@@ -83,7 +83,7 @@
                       <h2>Mines</h2>
                     </div>
                     <div class="mines-meta space-y-2">
-                      <div><span class="label">Commit</span><span id="commit" class="value"></span></div>
+                      <div><span class="label text-xs">Commit</span><span id="commit" class="value"></span></div>
                       <div><span class="label">Client Seed</span><span id="client-seed" class="value"></span></div>
                       <div><span class="label">Nonce</span><span id="nonce" class="value">-</span></div>
                       <div><span class="label">Balance</span><span id="balance" class="value">--</span></div>
@@ -104,18 +104,22 @@
                         <span class="suffix">gems</span>
                       </div>
                     </div>
-                    <div class="control-buttons flex space-x-2">
-                      <button id="start" class="btn primary">Start Game</button>
-                      <button id="cashout" class="btn accent" disabled>Cash Out</button>
-                      <button id="reveal" class="btn secondary" disabled>Reveal Server Seed</button>
-                    </div>
                   </div>
 
                 </div>
 
-                <!-- RIGHT SIDE: Game Board -->
-                <div class="w-1/2 flex justify-center items-center">
-                  <div id="board" class="board w-full h-full"></div>
+                <!-- RIGHT SIDE: Game Board + Server Seed -->
+                <div class="w-1/2 flex flex-col justify-start items-center gap-2">
+                  <div id="board" class="board w-full">
+                  </div>
+
+                  <div class="control-buttons flex space-x-2">
+                    <button id="start" class="btn primary">Start Game</button>
+                    <button id="cashout" class="btn accent" disabled>Cash Out</button>
+                    <button id="reveal" class="btn secondary" disabled>Reveal Server Seed</button>
+                  </div>
+
+                  <div id="server-seed" class="server-seed"></div>
                 </div>
 
               </div>

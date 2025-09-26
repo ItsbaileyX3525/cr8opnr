@@ -58,8 +58,6 @@
       }
 
 
-/* all css below is AI generated */
-
 .mines-body {
   min-height: 100vh;
   margin: 0;
@@ -275,7 +273,7 @@
   padding: 1.25rem;
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: inset 0 0 22px rgba(6, 10, 18, 0.6);
-  min-height: 200px;
+  min-height: 500px;
   grid-template-columns: repeat(var(--columns, 5), clamp(44px, 8vw, 56px));
 }
 
@@ -305,9 +303,18 @@
 }
 
 .board .tile.is-safe {
-  background: rgba(67, 8, 119, 0.25);
-  color: #b366ff;
-  border-color: rgba(88, 206, 145, 0.5);
+  background-color: rgba(67, 8, 119, 0.25);
+  border-color: #b366ff;
+  background-image: url('/assets/svg/gem.png');
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #b366ff; 
+  font-size: 0; 
+}
+
+#profile-dropdown {
+  z-index: 9999;
 }
 
 .board .tile.is-mine {
@@ -335,10 +342,6 @@
   color: rgba(198, 205, 255, 0.8);
   word-break: break-all;
   min-height: 1.5rem;
-}
-
-#profile-dropdown {
-  z-index: 9999;
 }
 
 @media (max-width: 640px) {
