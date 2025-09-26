@@ -76,12 +76,10 @@
 }
 
 .mines-panel {
-  background: rgba(35, 38, 49, 0.92);
+  background: #161c20;
   backdrop-filter: blur(14px);
-  border-radius: 20px;
   padding: clamp(1.75rem, 3vw, 2.5rem);
   box-shadow: 0 20px 45px rgba(6, 10, 22, 0.58);
-  border: 1px solid rgba(124, 106, 255, 0.22);
 }
 
 .mines-header {
@@ -102,7 +100,7 @@
   font-size: clamp(2.25rem, 5vw, 3rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #f1f5ff;
+  color: #b366ff;
 }
 
 .mines-meta {
@@ -194,7 +192,7 @@
   letter-spacing: 0.05em;
   cursor: pointer;
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
-  background: rgba(82, 110, 255, 0.85);
+  background: rgba(116, 45, 182, 0.85);
   color: #fff;
 }
 
@@ -210,7 +208,7 @@
 }
 
 .btn.primary {
-  background: linear-gradient(135deg, #6274ff, #4b8bff);
+  background: linear-gradient(135deg, #b366ff, #b366ff);
 }
 
 .btn.secondary {
@@ -224,7 +222,7 @@
 }
 
 .btn.accent {
-  background: linear-gradient(135deg, #ff8a5c, #ff5470);
+  background: linear-gradient(135deg, #34df31, #77d33f);
   color: #fff7f6;
 }
 
@@ -305,8 +303,8 @@
 }
 
 .board .tile.is-safe {
-  background: rgba(88, 206, 145, 0.25);
-  color: #7ff1bd;
+  background: rgba(67, 8, 119, 0.25);
+  color: #b366ff;
   border-color: rgba(88, 206, 145, 0.5);
 }
 

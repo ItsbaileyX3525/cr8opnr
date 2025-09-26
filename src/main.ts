@@ -13,6 +13,7 @@ profileContainer.addEventListener("click", () => {
     }
 });
 
+
 signinButton.addEventListener("click", () => {
     window.location.href = "/login"
 });
@@ -31,7 +32,6 @@ const prizes = [
   "won 2 Steam keys!",
   "won 3 Steam keys!",
   "won 5 Steam keys!",
-  "won a mystery Steam key!",
   "won a Steam bundle!",
   "won a wallet code!",
   "won an game drop!",
@@ -108,13 +108,13 @@ function startcontinuouslist(): void {
   textcontainer.style.flexDirection = "column"
   textcontainer.style.justifyContent = "flex-end"
   textcontainer.style.overflow = "hidden"
-  textcontainer.style.padding = "10px"
-  textcontainer.style.gap = "16px"
+  textcontainer.style.padding = "25px"
+  textcontainer.style.gap = "26px"
   textcontainer.style.boxSizing = "border-box"
   
 
   const itemheight = 36
-  const maxitems = 14
+  const maxitems = 12
   const winners: HTMLDivElement[] = []
 
   function addwinner() {
@@ -128,7 +128,7 @@ function startcontinuouslist(): void {
     wrapper.style.fontSize = "13px"
     wrapper.style.fontWeight = "600"
     wrapper.style.height = `${itemheight}px`
-    wrapper.style.width = `250px`
+    wrapper.style.width = `200px`
     wrapper.style.margin = "0 auto"
     wrapper.style.display = "flex"
     wrapper.style.alignItems = "center"
