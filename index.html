@@ -17,23 +17,29 @@
       </p>
       <div class="flex items-center space-x-4 text-lg md:text-2xl relative">
         <div class="flex bg-[#303030] rounded-2xl px-3 py-1 shadow-inner items-center ring-1 ring-purple-500/30">
-          <img class="w-6 h-6 md:w-8 md:h-8 mb-0.5" src="/assets/svg/gem.png" alt="">
+          <img class="w-6 h-6 md:w-8 md:h-8 mb-0.5" src="/assets/svg/gem.png" alt="gems">
           <p id="gem-balance" class="ml-3 text-white font-semibold drop-shadow-sm">0</p>
         </div>
-        <img id="profile-container" class="ml-2 md:ml-4 rounded-full w-10 h- md:w-12 md:h-12 cursor-pointer shadow-lg ring-2 ring-purple-400/40" src="/assets/svg/default.png" alt="profile image">
-        <div id="profile-dropdown" class=" hidden absolute right-0 top-[65px] bg-[#1d1d1d] rounded-xl px-3 py-2 select-none shadow-2xl z-100 h-60 w-50 ">
-          <p id="username-text" class="flex justify-center font-extrabold text-[20px]">Not logged in</p>
-          <div id="settings-container" class="bg-[#303030] px-3 py-1 mt-2 mb-2 shadow-inner items-center ring-1 ring-purple-500/30 cursor-pointer flex justify-center">
-            <img src="/assets/svg/settings-5672.svg" alt="settings" class="w-5 h-5 inline-block "> <p id="settings-button" class="cursor-pointer font-extrabold inline-block ml-6">Settings</p>
+        <img id="profile-container" class="ml-2 md:ml-4 rounded-full w-10 h-10 md:w-12 md:h-12 cursor-pointer shadow-lg ring-2 ring-purple-400/40" src="/assets/svg/default.png" alt="profile image">
+        <div id="profile-dropdown" class="hidden absolute right-0 top-[65px] bg-[#1d1d1d] rounded-xl px-4 py-3 select-none shadow-2xl w-56">
+          <p id="username-text" class="font-extrabold text-lg text-center">Not logged in</p>
+          <div id="settings-container" class="mt-3 flex items-center justify-center gap-2 bg-[#303030] px-3 py-2 rounded-xl cursor-pointer ring-1 ring-purple-500/30">
+            <img src="/assets/svg/settings-5672.svg" alt="settings" class="w-5 h-5">
+            <p id="settings-button" class="font-semibold">Settings</p>
           </div>
-          <div id="signin-container" class="bg-[#303030] px-3 py-1 mt-2 mb-2 shadow-inner items-center ring-1 ring-purple-500/30 cursor-pointer flex justify-center">
-            <img src="/assets/svg/login-svgrepo-com.svg" alt="login" class="w-6 h-6 inline-block mr-6"> <p id="signin-button" class=" cursor-pointer font-extrabold inline-block mr-5">Sign in</p>
+          <div id="signin-container" class="mt-2 flex items-center justify-center gap-2 bg-[#303030] px-3 py-2 rounded-xl cursor-pointer ring-1 ring-purple-500/30">
+            <img src="/assets/svg/login-svgrepo-com.svg" alt="login" class="w-5 h-5">
+            <p id="signin-button" class="font-semibold">Sign in</p>
           </div>
-          <div id="register-container" class="bg-[#303030] px-3 py-1 mt-2 mb-2 shadow-inner intems-center ring-1 ring-purple-500/300 cursor-pointer flex jusify-center">
-            <img src="/assets/svg/registration-1.svg" alt="register" class="w-8 h-8 inline-block ml-1"><p id="register-button" class=" cursor-pointer font-extrabold inline-block ml-4">Register</p>
+          <div id="register-container" class="mt-2 flex items-center justify-center gap-2 bg-[#303030] px-3 py-2 rounded-xl cursor-pointer ring-1 ring-purple-500/30">
+            <img src="/assets/svg/registration-1.svg" alt="register" class="w-6 h-6">
+            <p id="register-button" class="font-semibold">Register</p>
           </div>
-          <div id="signout-container" class="hidden  bg-[#303030] px-3 py-1 mt-2 mb-2 shadow-inner items-center ring-1 ring-purple-500/30 cursor-pointer  justify-center">
-           <img src="/assets/svg/Logout.svg" alt="signout" class="w-6 h-6 inline-block ml-2"> <p id="signout-button" class="cursor-pointer font-extrabold inline-block ml-2">Sign out</p>
+          <div id="signout-container" class="hidden">
+            <div class="mt-2 flex items-center justify-center gap-2 bg-[#303030] px-3 py-2 rounded-xl cursor-pointer ring-1 ring-purple-500/30">
+              <img src="/assets/svg/Logout.svg" alt="signout" class="w-5 h-5">
+              <p id="signout-button" class="font-semibold">Sign out</p>
+            </div>
           </div>
         </div>
       </div>

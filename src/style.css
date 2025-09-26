@@ -58,6 +58,8 @@
       }
 
 
+/* all css below is AI generated */
+
 .mines-body {
   min-height: 100vh;
   margin: 0;
@@ -333,6 +335,10 @@
   color: rgba(198, 205, 255, 0.8);
   word-break: break-all;
   min-height: 1.5rem;
+}
+
+#profile-dropdown {
+  z-index: 9999;
 }
 
 @media (max-width: 640px) {

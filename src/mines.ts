@@ -1,3 +1,5 @@
+import { ensureAuthenticated } from "./userData";
+
 const API = "http://localhost:3000/api";
 
 type TileState = "hidden" | "safe" | "mine";
@@ -356,6 +358,11 @@ startBtn.onclick = startGame;
 revealBtn.onclick = revealSeed;
 	cashoutBtn.onclick = cashOut;
 
-	refreshBalance();
+	void ensureAuthenticated().then((profile) => {
+		if (!profile) {
+			return;
+		}
+		void refreshBalance();
+	});
 	updatePotentialDisplay(0);
 	setEarningsDisplay(0);
