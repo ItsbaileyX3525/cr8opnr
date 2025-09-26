@@ -12,6 +12,7 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const pagesRoutes = require('./routes/pages');
 const minesRoutes = require("./routes/mines");
+const crashRoutes = require("./routes/crash");
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(cors())
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api', minesRoutes);
+app.use('/api', crashRoutes);
 app.use('/', pagesRoutes);
 
 app.use((err, req, res, next) => {
