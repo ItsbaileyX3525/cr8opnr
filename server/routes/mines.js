@@ -181,9 +181,7 @@ router.post("/start", async (req, res) => {
 		});
 	} catch (err) {
 		if (conn) {
-			try {
-				await conn.rollback();
-			} catch (_) {}
+			try { await conn.rollback(); } catch (_) {}
 		}
 		console.error("/start error", err);
 		res.status(500).json({ error: "Internal server error" });
@@ -191,6 +189,8 @@ router.post("/start", async (req, res) => {
 		if (conn) conn.release();
 	}
 });
+
+module.exports = router;
 
 router.post("/revealTile", (req, res) => {
 	const { gameId, tile } = req.body || {};
