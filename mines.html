@@ -83,9 +83,9 @@
                       <h2>Mines</h2>
                     </div>
                     <div class="mines-meta space-y-2">
-                      <div><span class="label text-xs">Commit</span><span id="commit" class="value"></span></div>
-                      <div><span class="label">Client Seed</span><span id="client-seed" class="value"></span></div>
-                      <div><span class="label">Nonce</span><span id="nonce" class="value">-</span></div>
+                      <div><span class="label text-xs">Commit</span><span id="commit" class=" hidden value"></span></div>
+                      <div><span class="label">Client Seed</span><span id="client-seed" class="hidden value"></span></div>
+                      <div><span class="label">Nonce</span><span id="nonce" class="hidden value">-</span></div>
                       <div><span class="label">Balance</span><span id="balance" class="value">--</span></div>
                       <div><span class="label">Potential</span><span id="potential" class="value">0</span></div>
                       <div><span class="label">Earnings</span><span id="earnings" class="value">0</span></div>
@@ -101,8 +101,17 @@
                       <label for="bet" class="label">Bet</label>
                       <div class="bet-input">
                         <input id="bet" type="number" min="1" step="1" value="10" />
-                        <span class="suffix">gems</span>
+                        <span class=" w-20 suffix">gems</span>
                       </div>
+
+                      <label class="flex flex-col gap-1 bg-[#1d2225] rounded-2xl px-5 py-3 shadow-xl mt-4 mr-3">
+                        <span class="text-sm uppercase tracking-wide text-[#cbd5f5]">Grid Size</span>
+                        <select id="grid-size" class="text-white font-semibold px-3 py-2 rounded">
+                          <option value="3x3">3x3 - 2 bombs</option>
+                          <option value="4x4">4x4 - 4 bombs</option>
+                          <option value="5x5" selected>5x5 - 5 bombs</option>
+                        </select>
+                      </label>
                     </div>
                   </div>
 
@@ -118,8 +127,9 @@
                     <button id="cashout" class="btn accent" disabled>Cash Out</button>
                     <button id="reveal" class="btn secondary" disabled>Reveal Server Seed</button>
                   </div>
+                  <br>
 
-                  <div id="server-seed" class="server-seed"></div>
+                  <div id="server-seed" class="hidden server-seed"></div>
                 </div>
 
               </div>

@@ -30,8 +30,26 @@ const earningsEl = document.querySelector<HTMLSpanElement>("#earnings")!;
 const betInput = document.querySelector<HTMLInputElement>("#bet")!;
 const cashoutBtn = document.querySelector<HTMLButtonElement>("#cashout")!;
 const headerGemEl = document.querySelector<HTMLElement>("#gem-balance");
+const gridSizeSelect = document.querySelector<HTMLSelectElement>("#grid-size")!;
 
 type MessageKind = "info" | "success" | "error";
+
+
+function setGridSize() {
+	const value = gridSizeSelect.value;
+	if (value === "3x3") { 
+		width = height = 3; 
+		mines = 2; 
+	} else if (value === "4x4") { 
+		width = height = 4; 
+		mines = 4; 
+	} else { 
+		width = height = 5; 
+		mines = 5; 
+	}
+}
+
+
 
 function setMessage(kind: MessageKind | null, text: string) {
 	messageEl.textContent = text;
@@ -91,22 +109,22 @@ function updatePotentialDisplay(value: number) {
 }
 
 function calculateLocalPotential(bet: number, reveals: number): number {
-	if (!Number.isFinite(bet) || bet <= 0) return 0;
 	const totalTiles = width * height;
 	const safeTiles = totalTiles - mines;
 	if (safeTiles <= 0) return bet;
 	const clamped = Math.min(Math.max(reveals, 0), safeTiles);
 	if (clamped === 0) return bet;
-	let fairMultiplier = 1;
-	for (let i = 0; i < clamped; i += 1) {
-		fairMultiplier *= (totalTiles - i) / (safeTiles - i);
+
+	let multiplier = 1;
+	for (let i = 0; i < clamped; i++) {
+		multiplier *= (totalTiles - i) / (safeTiles - i);
 	}
-	const progress = safeTiles === 0 ? 0 : clamped / safeTiles;
-	const scale = 0.26 + 0.49 * Math.pow(progress, 1.6);
-	const multiplier = 1 + (fairMultiplier - 1) * scale;
-	const payout = Math.floor(bet * multiplier);
-	return payout <= bet ? bet : payout;
+
+	const rewardScale = 1 + (width - 3) * 0.2; // bigger grid, higher reward
+	return Math.floor(bet * multiplier * rewardScale);
 }
+
+gridSizeSelect.addEventListener("change", () => setGridSize());
 
 function computePotential(): number {
 	if (currentBet === null) return 0;
@@ -139,6 +157,7 @@ function updateNonceDisplay(value: number) {
 function resetBoard(size: number) {
 	board = Array(size).fill("hidden");
 	boardEl.innerHTML = "";
+	
 }
 
 function applyMineReveal(indices: number[]) {
@@ -335,6 +354,7 @@ async function revealSeed() {
 function renderBoard() {
 	boardEl.innerHTML = "";
 	boardEl.style.setProperty("--columns", String(width));
+	boardEl.style.setProperty("--rows", String(height));
 	board.forEach((tile, i) => {
 		const btn = document.createElement("button");
 		btn.type = "button";
