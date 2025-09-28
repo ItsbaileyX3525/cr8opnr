@@ -31,3 +31,27 @@ A side game you can play where you can input some gems to bet and see how far th
 ## Final words
 
 Idk really, I guess just enjoy the website and don't get too addicted if the game does turn out to be addictive haha. Yh
+
+## Want to clone this and run your own gambling site?
+
+I'm not sure why you'd want to clone this and make it work locally but in case you do...
+
+Clone this repo
+
+open the root folder 
+
+You will have to create your own database so that you can actually store the data, it uses mariadb so ensure that mariadb is installed!
+
+### on Linux/Mac
+
+This process will attempt to automatically install mariadb and start the service for you.
+
+`chmod +x install.sh`
+
+`sudo ./install.sh`
+
+### on Windows
+
+`./install.bat`
+
+and now the server should be up and running!

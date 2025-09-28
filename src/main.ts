@@ -131,6 +131,7 @@ function startcontinuouslist(): void {
     wrapper.style.width = `200px`
     wrapper.style.margin = "0 auto"
     wrapper.style.display = "flex"
+    wrapper.classList.add("rounded-xl")
     wrapper.style.alignItems = "center"
     wrapper.style.justifyContent = "center"
     wrapper.style.opacity = "0"
