@@ -79,7 +79,6 @@
   backdrop-filter: blur(14px);
   padding: clamp(1.75rem, 3vw, 2.5rem);
   box-shadow: 0 20px 45px rgba(6, 10, 22, 0.58);
-  gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 mines-header {
@@ -264,32 +263,22 @@ mines-header {
   border: 1px solid rgba(255, 99, 132, 0.35);
 }
 
-
-.board-wrapper {
-  width: 100%;
-  max-width: clamp(360px, 48vw, 520px);
-  max-height: clamp(320px, 68vh, 580px);
-  border-radius: 22px;
-  padding: clamp(1rem, 2vw, 1.35rem);
-  background: rgba(13, 18, 30, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: inset 0 0 22px rgba(6, 10, 18, 0.6);
-  overflow: auto;
-}
-
 .board {
   display: grid;
-  gap: clamp(4px, 0.6vw, 10px);
+  gap: -4px;
   justify-content: center;
-  min-width: min-content;
-  min-height: min-content;
-  --tile-size: 48px;
-  grid-template-columns: repeat(var(--columns, 5), var(--tile-size));
+  background: rgba(13, 18, 30, 0.75);
+  border-radius: 18px;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 22px rgba(6, 10, 18, 0.6);
+  min-height: 250px;
+  grid-template-columns: repeat(var(--columns, 5), clamp(44px, 8vw, 56px));
 }
 
 .board .tile {
-  width: var(--tile-size);
-  height: var(--tile-size);
+  width: clamp(44px, 8vw, 56px);
+  height: clamp(44px, 8vw, 56px);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(33, 43, 75, 0.8);
@@ -353,8 +342,6 @@ mines-header {
   word-break: break-all;
   min-height: 1.5rem;
 }
-
-
 
 /* crash message styling */
 .crash-message {

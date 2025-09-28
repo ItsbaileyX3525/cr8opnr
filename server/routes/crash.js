@@ -11,9 +11,7 @@ router.use(requireLogin);
 const rounds = new Map();
 
 const MAX_BET = 1000000;
-const EXP_DIVISOR = 5500;
-const CRASH_RESOLVE_BUFFER_MS = 250;
-const CRASH_SETTLE_DELAY_MS = 10_000;
+const EXP_DIVISOR = 5000;
 
 function createServerSeed() {
 	const serverSeed = crypto.randomBytes(32).toString("hex");
@@ -41,67 +39,6 @@ function computeCrashPoint(hash) {
 	const value = (100n * max) / denom;
 	const result = Number(value) / 100;
 	return result < 1 ? 1 : result;
-}
-
-function clearRoundTimers(round) {
-	if (round.crashTimer) {
-		clearTimeout(round.crashTimer);
-		round.crashTimer = null;
-	}
-	if (round.settleTimer) {
-		clearTimeout(round.settleTimer);
-		round.settleTimer = null;
-	}
-}
-
-function scheduleAutoCrash(round) {
-	if (round.crashTimer) {
-		clearTimeout(round.crashTimer);
-	}
-	const elapsedSinceStart = Date.now() - round.startedAt;
-	const expectedElapsed = Math.log(Math.max(round.crashPoint, 1)) * EXP_DIVISOR;
-	const delay = Number.isFinite(expectedElapsed) ? Math.max(0, Math.ceil(expectedElapsed - elapsedSinceStart)) : 0;
-	round.crashTimer = setTimeout(() => handleAutoCrash(round.id), delay + CRASH_RESOLVE_BUFFER_MS);
-}
-
-function handleAutoCrash(roundId) {
-	const round = rounds.get(roundId);
-	if (!round) return;
-	round.crashTimer = null;
-	if (round.status !== "running") {
-		scheduleSettlement(round);
-		return;
-	}
-	const now = Date.now();
-	const stateMultiplier = updateRoundState(round, now);
-	if (round.status === "running") {
-		const fallbackDelay = stateMultiplier >= round.crashPoint ? 0 : CRASH_RESOLVE_BUFFER_MS;
-		round.crashTimer = setTimeout(() => handleAutoCrash(roundId), Math.max(fallbackDelay, CRASH_RESOLVE_BUFFER_MS));
-		return;
-	}
-	scheduleSettlement(round);
-}
-
-function scheduleSettlement(round) {
-	if (round.settleTimer || round.status === "running") return;
-	round.settleTimer = setTimeout(() => handleSettlement(round.id), CRASH_SETTLE_DELAY_MS);
-}
-
-function handleSettlement(roundId) {
-	const round = rounds.get(roundId);
-	if (!round) return;
-	clearRoundTimers(round);
-	if (round.status === "running") {
-		scheduleAutoCrash(round);
-		return;
-	}
-	round.settled = true;
-	if (!round.endedAt) {
-		round.endedAt = Date.now();
-	}
-	if (round.status === "crashed" && round.currentMultiplier < round.crashPoint) {
-		round.currentMultiplier = round.crashPoint;
-	}
 }
 
 function getActiveRound(userId) {
@@ -150,7 +87,6 @@ function updateRoundState(round, now) {
 		round.status = "crashed";
 		round.endedAt = now;
 		round.currentMultiplier = round.crashPoint;
-		round.payout = 0;
 		return round.crashPoint;
 	}
 	round.currentMultiplier = current;
@@ -211,13 +147,9 @@ router.post("/crash/start", async (req, res) => {
 			payout: null,
 			endedAt: null,
 			cashedAt: null,
-			revealed: false,
-			settled: false,
-			crashTimer: null,
-			settleTimer: null
+			revealed: false
 		};
 		rounds.set(roundId, round);
-		scheduleAutoCrash(round);
 		return res.json({
 			gameId: roundId,
 			commit,
@@ -255,9 +187,6 @@ router.get("/crash/status", (req, res) => {
 	}
 	const now = Date.now();
 	const multiplier = updateRoundState(round, now);
-	if (round.status === "crashed") {
-		scheduleSettlement(round);
-	}
 	const payload = {
 		gameId,
 		status: round.status,
@@ -294,13 +223,9 @@ router.post("/crash/cashout", async (req, res) => {
 	const now = Date.now();
 	const multiplier = updateRoundState(round, now);
 	if (round.status === "crashed") {
-		scheduleSettlement(round);
 		return res.status(400).json({ error: "Round already crashed" });
 	}
 	if (round.status === "cashed") {
-		clearRoundTimers(round);
-		scheduleSettlement(round);
-		round.settled = true;
 		return res.json({
 			success: true,
 			multiplier: round.cashoutMultiplier,
@@ -336,9 +261,6 @@ router.post("/crash/cashout", async (req, res) => {
 		round.endedAt = now;
 		round.balanceAtPayout = updatedBalance;
 		round.revealed = true;
-		clearRoundTimers(round);
-		scheduleSettlement(round);
-		round.settled = true;
 		return res.json({
 			success: true,
 			multiplier,
@@ -382,7 +304,6 @@ router.post("/crash/reveal", (req, res) => {
 		return res.status(400).json({ error: "Round still in progress" });
 	}
 	round.revealed = true;
-	clearRoundTimers(round);
 	rounds.delete(gameId);
 	return res.json({
 		serverSeed: round.serverSeed,
