@@ -5,6 +5,8 @@ const submitButton = document.getElementById('register-submit') as HTMLButtonEle
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    submitButton.disabled = true;
+
     const formData = new FormData(form)
 
     const username = formData.get("username")
@@ -42,11 +44,13 @@ form.addEventListener("submit", async (e) => {
             submitButton.disabled = true;
             setTimeout(() => {
                 window.location.href = "/"
-            }, 1500);
+            }, 700);
         } else {
             statusText.classList.remove("text-green-300")
             statusText.classList.add("text-red-500")
             statusText.innerText = data.message
+            submitButton.disabled = false;
+
         }
 	});
 })

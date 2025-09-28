@@ -5,6 +5,8 @@ const submitButton = document.getElementById('login-submit') as HTMLButtonElemen
 form.addEventListener("submit", async (e) => {
     e.preventDefault()
 
+    submitButton.disabled = true
+
     const data = new FormData(form)
 
     const username = data.get('username')
@@ -32,11 +34,12 @@ form.addEventListener("submit", async (e) => {
             submitButton.disabled = true;
             setTimeout(() => {
                 window.location.href = "/"
-            }, 1500);
+            }, 700);
         } else {
             statusText.classList.remove("text-green-300")
             statusText.classList.add("text-red-500")
             statusText.innerText = data.message
+            submitButton.disabled = false
         }
 	});
 })

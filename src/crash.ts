@@ -42,30 +42,6 @@ let balance: number | null = null;
 let currentBet: number | null = null;
 let fairnessProof: Proof | null = null;
 
-
-
-
-const gameContainer = document.querySelector<HTMLDivElement>(".chart-bg")?.parentElement!;
-
-function startAnimation() {
-  gameContainer.classList.remove("crashed");
-  gameContainer.classList.add("running");
-}
-
-function stopAnimation(crashed: boolean) {
-  gameContainer.classList.remove("running");
-  if (crashed) {
-    gameContainer.classList.add("crashed");
-  }
-}
-
-function cashoutAnimation(cashout: boolean) {
-	gameContainer.classList.remove("running");
-	if (cashout) {
-	  gameContainer.classList.add("cashout");
-	}
-  }
-
 function setMessage(kind: MessageKind | null, text: string) {
 	messageEl.textContent = text;
 	messageEl.className = "crash-message";
@@ -307,7 +283,6 @@ async function startRound() {
 		}
 		setEarnings(0);
 		setStatusText("Running");
-		startAnimation();
 		setMessage("info", "Round armed");
 		updateControlsForState("running");
 		startPolling();
@@ -343,7 +318,6 @@ async function pollStatus() {
 		if (data.status === "crashed") {
 			updateControlsForState("crashed");
 			setStatusText("Crashed");
-			stopAnimation(true);
 			if (typeof data.crashPoint === "number") {
 				setCrashPoint(data.crashPoint);
 			}
@@ -363,7 +337,6 @@ async function pollStatus() {
 		if (data.status === "cashed") {
 			updateControlsForState("cashed");
 			setStatusText("Cashed out");
-			cashoutAnimation(false);
 			if (typeof data.commit === "string") {
 				setCommitData(data.commit, typeof data.clientSeed === "string" ? data.clientSeed : clientSeed, typeof data.nonce === "number" ? data.nonce : null);
 			}

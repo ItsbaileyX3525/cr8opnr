@@ -64,6 +64,116 @@ function generateMines(serverSeed, clientSeed, nonce, width, height, minesCount)
 }
 
 const games = new Map();
+const INACTIVITY_MS = 10_000;
+
+function clearInactivityTimer(game) {
+	if (game.inactivityTimer) {
+		clearTimeout(game.inactivityTimer);
+		game.inactivityTimer = null;
+	}
+}
+
+function scheduleInactivity(game) {
+	clearInactivityTimer(game);
+	game.lastActivity = Date.now();
+	game.inactivityTimer = setTimeout(() => {
+		handleInactivity(game.id).catch((err) => {
+			console.error("Failed to resolve mines inactivity", err);
+		});
+	}, INACTIVITY_MS);
+}
+
+async function handleInactivity(gameId) {
+	const game = games.get(gameId);
+	if (!game || !game.alive) return;
+	try {
+		if (game.revealed.size === 0) {
+			await refundGame(game, "timeout");
+		} else {
+			await forfeitGame(game, "timeout");
+		}
+	} catch (err) {
+		console.error("Inactivity resolution failed", err);
+		if (games.has(gameId) && game.alive) {
+			scheduleInactivity(game);
+		}
+	}
+}
+
+async function refundGame(game, reason) {
+	clearInactivityTimer(game);
+	let conn;
+	try {
+		conn = await pool.getConnection();
+		await conn.beginTransaction();
+		const rows = await conn.query("SELECT gems FROM users WHERE id = ? FOR UPDATE", [game.userId]);
+		if (!rows || rows.length === 0) {
+			await conn.rollback();
+			games.delete(game.id);
+			throw new Error("User not found");
+		}
+		const currentBalance = Number(rows[0].gems) || 0;
+		const updatedBalance = currentBalance + game.bet;
+		await conn.query("UPDATE users SET gems = ? WHERE id = ?", [updatedBalance, game.userId]);
+		await conn.commit();
+		game.alive = false;
+		game.finishedAt = Date.now();
+		game.forfeited = false;
+		game.forfeitReason = null;
+		games.delete(game.id);
+		return {
+			balance: updatedBalance,
+			payout: game.bet,
+			reason
+		};
+	} catch (err) {
+		if (conn) {
+			try {
+				await conn.rollback();
+			} catch (_) {}
+		}
+		throw err;
+	} finally {
+		if (conn) conn.release();
+	}
+}
+
+async function forfeitGame(game, reason) {
+	clearInactivityTimer(game);
+	if (!game.alive) {
+		return {
+			bet: game.bet,
+			safeReveals: game.revealed.size,
+			reason: reason || game.forfeitReason || "manual",
+			earnings: -game.bet
+		};
+	}
+	game.alive = false;
+	game.defeated = true;
+	game.forfeited = true;
+	game.forfeitReason = reason || "manual";
+	game.finishedAt = Date.now();
+	return {
+		bet: game.bet,
+		safeReveals: game.revealed.size,
+		reason: game.forfeitReason,
+		earnings: -game.bet
+	};
+}
+
+async function fetchBalance(userId) {
+	let conn;
+	try {
+		conn = await pool.getConnection();
+		const rows = await conn.query("SELECT gems FROM users WHERE id = ?", [userId]);
+		if (!rows || rows.length === 0) {
+			return null;
+		}
+		return Number(rows[0].gems) || 0;
+	} finally {
+		if (conn) conn.release();
+	}
+}
 
 function calculatePayout(game, safeReveals) {
 	const { bet, width, height, mines } = game;
@@ -149,6 +259,7 @@ router.post("/start", async (req, res) => {
 		await conn.commit();
 		const { serverSeed, commit } = createServerSeed();
 		const minePositions = new Set(generateMines(serverSeed, clientSeed, 0, width, height, mines));
+		const now = Date.now();
 		const game = {
 			id: uuidv4(),
 			userId,
@@ -162,9 +273,16 @@ router.post("/start", async (req, res) => {
 			alive: true,
 			bet: betAmount,
 			revealed: new Set(),
-			minePositions
+			minePositions,
+			createdAt: now,
+			lastActivity: now,
+			finishedAt: null,
+			forfeited: false,
+			forfeitReason: null,
+			inactivityTimer: null
 		};
 		games.set(game.id, game);
+		scheduleInactivity(game);
 		const potential = calculatePayout(game, 0);
 		res.json({
 			gameId: game.id,
@@ -190,8 +308,6 @@ router.post("/start", async (req, res) => {
 	}
 });
 
-module.exports = router;
-
 router.post("/revealTile", (req, res) => {
 	const { gameId, tile } = req.body || {};
 	const userId = req.session.userId;
@@ -216,8 +332,10 @@ router.post("/revealTile", (req, res) => {
 	const isMine = game.minePositions.has(index);
 	game.nonce += 1;
 	if (isMine) {
+		clearInactivityTimer(game);
 		game.alive = false;
 		game.defeated = true;
+		game.finishedAt = Date.now();
 		return res.json({
 			result: "mine",
 			nonce: game.nonce,
@@ -227,6 +345,7 @@ router.post("/revealTile", (req, res) => {
 		});
 	}
 	game.revealed.add(index);
+	scheduleInactivity(game);
 	const safeReveals = game.revealed.size;
 	const potential = calculatePayout(game, safeReveals);
 	res.json({
@@ -245,6 +364,7 @@ router.post("/cashout", async (req, res) => {
 	if (!game) return res.status(404).json({ error: "Game not found" });
 	if (game.userId !== userId) return res.status(403).json({ error: "Forbidden" });
 	if (!game.alive) return res.status(400).json({ error: "Game already finished" });
+	clearInactivityTimer(game);
 	const safeReveals = game.revealed.size;
 	const payout = calculatePayout(game, safeReveals);
 	let conn;
@@ -285,6 +405,68 @@ router.post("/cashout", async (req, res) => {
 	}
 });
 
+	router.post("/forfeit", async (req, res) => {
+		const { gameId } = req.body || {};
+		const userId = req.session.userId;
+		const game = games.get(gameId);
+		if (!game) return res.status(404).json({ error: "Game not found" });
+		if (game.userId !== userId) return res.status(403).json({ error: "Forbidden" });
+		const safeReveals = game.revealed.size;
+		if (!game.alive) {
+			if (game.forfeited) {
+				const balance = await fetchBalance(userId).catch(() => null);
+				return res.json({
+					success: true,
+					outcome: "forfeit",
+					balance,
+					bet: game.bet,
+					safeReveals,
+					earnings: -game.bet,
+					serverSeed: game.serverSeed,
+					commit: game.commit,
+					clientSeed: game.clientSeed,
+					mines: Array.from(game.minePositions)
+				});
+			}
+			return res.status(400).json({ error: "Game already finished" });
+		}
+		if (safeReveals === 0) {
+			try {
+				const { balance, payout } = await refundGame(game, "manual");
+				return res.json({
+					success: true,
+					outcome: "refund",
+					balance,
+					payout,
+					bet: game.bet,
+					earnings: 0
+				});
+			} catch (err) {
+				console.error("/forfeit refund error", err);
+				return res.status(500).json({ error: "Unable to refund game" });
+			}
+		}
+		try {
+			const outcome = await forfeitGame(game, "manual");
+			const balance = await fetchBalance(userId).catch(() => null);
+			return res.json({
+				success: true,
+				outcome: "forfeit",
+				balance,
+				bet: outcome.bet,
+				safeReveals: outcome.safeReveals,
+				earnings: outcome.earnings,
+				serverSeed: game.serverSeed,
+				commit: game.commit,
+				clientSeed: game.clientSeed,
+				mines: Array.from(game.minePositions)
+			});
+		} catch (err) {
+			console.error("/forfeit error", err);
+			return res.status(500).json({ error: "Unable to forfeit game" });
+		}
+	});
+
 router.get("/balance", async (req, res) => {
 	const userId = req.session.userId;
 	let conn;
@@ -311,6 +493,7 @@ router.post("/reveal", (req, res) => {
 	if (!game) return res.status(404).json({ error: "Game not found" });
 	if (game.userId !== userId) return res.status(403).json({ error: "Forbidden" });
 	if (game.alive) return res.status(400).json({ error: "You can only reveal after game over" });
+	clearInactivityTimer(game);
 	games.delete(gameId);
 	res.json({
 		serverSeed: game.serverSeed,
