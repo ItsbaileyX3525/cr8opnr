@@ -1,5 +1,4 @@
 const profileContainer = document.getElementById("profile-container") as HTMLImageElement;
-//const gemBalance = document.getElementById("gem-balance") as HTMLParagraphElement;
 const profileContainerDropDown = document.getElementById("profile-dropdown") as HTMLDivElement;
 const signinButton = document.getElementById("signin-button") as HTMLParagraphElement;
 const registerButton = document.getElementById("register-button") as HTMLParagraphElement;

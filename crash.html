@@ -24,23 +24,34 @@
           <p id="gem-balance" class="ml-3 text-white font-semibold drop-shadow-sm">0</p>
         </div>
         <img id="profile-container" class="ml-2 md:ml-4 rounded-full w-10 h-10 md:w-12 md:h-12 cursor-pointer shadow-lg ring-2 ring-purple-400/40" src="/assets/svg/default.png" alt="profile image">
-        <div id="profile-dropdown" class="hidden absolute right-0 top-[65px] bg-[#1d1d1d] rounded-xl px-3 py-2 select-none shadow-2xl z-100 w-56">
+        <div id="profile-dropdown" class="hidden absolute right-0 top-[65px] bg-[#1d1d1f] rounded-xl px-4 py-3 
+          select-none shadow-[0_10px_30px_rgba(0,0,0,0.8)] w-56 ring-2 ring-purple-500/60">
           <p id="username-text" class="font-extrabold text-lg text-center">Not logged in</p>
-          <div id="settings-container" class="mt-3 flex items-center justify-center gap-2 bg-[#303030] px-3 py-2 rounded-xl cursor-pointer ring-1 ring-purple-500/30">
+          <div id="settings-button" class="mt-3 flex items-center justify-center gap-2 bg-[#2a2b2d] px-3 py-2 
+            rounded-xl cursor-pointer ring-2 ring-purple-500/60 hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] 
+            hover:bg-gradient-to-r hover:from-purple-600/50 hover:to-pink-500/40 transition">
             <img src="/assets/svg/settings-5672.svg" alt="settings" class="w-5 h-5">
             <p id="settings-button" class="font-semibold">Settings</p>
           </div>
-          <div id="signin-container" class="mt-2 flex items-center justify-center gap-2 bg-[#303030] px-3 py-2 rounded-xl cursor-pointer ring-1 ring-purple-500/30">
+          <div id="signin-button" class="mt-2 flex items-center justify-center gap-2 bg-[#2a2b2d] px-3 py-2 
+            rounded-xl cursor-pointer ring-2 ring-emerald-500/60 hover:shadow-[0_0_20px_rgba(16,185,129,0.6)] 
+            hover:bg-gradient-to-r hover:from-green-500/50 hover:to-emerald-400/40 transition">
             <img src="/assets/svg/login-svgrepo-com.svg" alt="login" class="w-5 h-5">
             <p id="signin-button" class="font-semibold">Sign in</p>
           </div>
-          <div id="register-container" class="mt-2 flex items-center justify-center gap-2 bg-[#303030] px-3 py-2 rounded-xl cursor-pointer ring-1 ring-purple-500/30">
+          <div id="register-button" class="mt-2 flex items-center justify-center gap-2 bg-[#2a2b2d] px-3 py-2 
+            rounded-xl cursor-pointer ring-2 ring-blue-500/60 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] 
+            hover:bg-gradient-to-r hover:from-blue-500/50 hover:to-indigo-400/40 transition">
             <img src="/assets/svg/registration-1.svg" alt="register" class="w-6 h-6">
             <p id="register-button" class="font-semibold">Register</p>
           </div>
-          <div id="signout-container" class="hidden mt-2 items-center justify-center gap-2 bg-[#303030] px-3 py-2 rounded-xl cursor-pointer ring-1 ring-purple-500/30">
-            <img src="/assets/svg/Logout.svg" alt="signout" class="w-5 h-5">
-            <p id="signout-button" class="font-semibold">Sign out</p>
+          <div id="signout-button" class="hidden">
+            <div class="mt-2 flex items-center justify-center gap-2 bg-[#2a2b2d] px-3 py-2 
+              rounded-xl cursor-pointer ring-2 ring-red-500/60 hover:shadow-[0_0_20px_rgba(239,68,68,0.7)] 
+              hover:bg-gradient-to-r hover:from-red-500/50 hover:to-orange-400/40 transition">
+              <img src="/assets/svg/Logout.svg" alt="signout" class="w-5 h-5">
+              <p id="signout-button" class="font-semibold">Sign out</p>
+            </div>
           </div>
         </div>
       </div>
